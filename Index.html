@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бар &middot; Холл</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d1a;color:#f0eee8;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:15px;line-height:1.5}
+.hdr{background:#0d0d1a;border-bottom:1px solid #2a2a48;padding:14px 16px 12px;position:sticky;top:0;z-index:50}
+.logo{font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-bottom:10px}
+.logo em{color:#e94560;font-style:normal}
+.hint{font-size:12px;color:#555;margin-bottom:10px;padding:6px 0}
+.list{padding:10px 16px 40px}
+
+/* CSS-only accordion */
+.toggle{display:none}
+.card{background:#16162a;border:1px solid #2a2a48;border-radius:16px;margin-bottom:8px;overflow:hidden}
+.card-head{display:flex;align-items:center;gap:8px;padding:13px 14px;cursor:pointer;-webkit-user-select:none;user-select:none}
+.hm{flex:1;min-width:0}
+.cn{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.csub{font-size:12px;color:#666;margin-top:1px}
+.hr{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.price{font-size:15px;font-weight:700;color:#f7a440}
+.tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.tag{font-size:10px;padding:2px 7px;border-radius:8px;white-space:nowrap}
+.tsp{background:#0f2010;color:#6bcf7f}
+.tgl{background:#201408;color:#f7a440}
+.arr{flex-shrink:0;font-size:22px;color:#444;line-height:1;transition:transform 0.25s;display:inline-block}
+.body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.toggle:checked ~ .body{max-height:2000px}
+.toggle:checked + .body, .toggle:checked ~ * .arr{ }
+label.card-head .arr{transform:rotate(0deg)}
+.card:has(.toggle:checked) .arr{transform:rotate(90deg)}
+.card:has(.toggle:checked){border-color:#3a3a60}
+
+.sep{height:1px;background:#2a2a48;margin:0 14px}
+.grow{}
+.glass-row{display:flex;align-items:center;gap:12px;padding:10px 14px 8px}
+.gn{font-size:13px;font-weight:600;color:#f0eee8}
+.gs{font-size:12px;color:#666;margin-top:2px}
+.gs2{padding:8px 14px 4px;font-size:13px;color:#666}
+.note{margin:0 14px 8px;padding:9px 11px;background:#1a1206;border-left:3px solid #f7a440;border-radius:0 8px 8px 0;font-size:12px;color:#c8a060;line-height:1.5}
+.sec{padding:10px 14px}
+.sct{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px}
+.ir{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #1e1e36;font-size:13px}
+.ir:last-of-type{border:none}
+.amt{color:#666;margin-left:10px;text-align:right;flex-shrink:0}
+.yield{display:flex;justify-content:space-between;padding:6px 10px;margin-top:6px;background:#0d0d1a;border-radius:8px;font-size:12px;color:#666}
+.yield b{color:#f0eee8;font-weight:500}
+.steps{list-style:none;margin-top:2px}
+.steps li{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #1e1e36;font-size:13px;line-height:1.45}
+.steps li:last-child{border:none}
+.sn{flex-shrink:0;width:20px;height:20px;background:#e94560;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px;font-style:normal}
+
+/* superjuice */
+.sj{background:#16162a;border:1px solid #2a2a48;border-radius:16px;margin:0 16px 30px;overflow:hidden}
+.sj-head{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;cursor:pointer;-webkit-user-select:none;user-select:none}
+.sj-label{font-size:16px;font-weight:700;color:#6bcf7f}
+.sj-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.sj-toggle{display:none}
+.sj-toggle:checked ~ .sj-body{max-height:1200px}
+.sj:has(.sj-toggle:checked) .arr{transform:rotate(90deg)}
+
+.sw{position:relative;margin-bottom:8px}
+.sw input{width:100%;height:44px;background:#16162a;border:1.5px solid #2a2a48;border-radius:12px;color:#f0eee8;font-size:16px;padding:0 40px 0 40px;outline:none;-webkit-appearance:none;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+.sw input:focus{border-color:#e94560}
+.sw input::placeholder{color:#444}
+.si{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:#555;pointer-events:none}
+.sx{position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;color:#666;font-size:24px;line-height:1;padding:2px 4px;cursor:pointer;display:none;font-family:sans-serif}
+.chs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chs::-webkit-scrollbar{display:none}
+.ch{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1px solid #2a2a48;background:transparent;color:#888;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;white-space:nowrap;-webkit-appearance:none}
+.ch.on{background:#e94560;border-color:#e94560;color:#fff}
+.norezultat{text-align:center;padding:50px 20px;color:#444;font-size:14px;display:none}
+.card.hidden{display:none}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="logo">Бар <em>&middot; Холл</em></div>
+  <div class="sw">
+    <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="search" id="q" placeholder="Название, ингредиент, дух…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <button class="sx" id="sx" type="button">&#215;</button>
+  </div>
+  <div class="chs" id="chs"></div>
+</div>
+
+<div class="norezultat" id="nr">Ничего не найдено</div>
+<div class="list">
+<div class="card" id="c0">
+  <label class="card-head" for="tc0">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Базиликовый смэш · Hoppers</div>
+      <div class="csub">Джин &middot; Шейкер</div>
+    </div>
+    <div class="hr">
+      <div class="price">650 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc0" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Листья базилика</span><span class="amt">8-10 листьев</span></div>
+<div class="ir"><span>Джин Hoppers</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Лимонный сок</span><span class="amt">25 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">20 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>105 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Мадлим базилик в шейкере</span></li>
+<li><b class="sn">3</b><span>Добавляем остальные ингредиенты</span></li>
+<li><b class="sn">4</b><span>Лёд в шейкер на 1/3</span></li>
+<li><b class="sn">5</b><span>Шейкуем 15–20 сек.</span></li>
+<li><b class="sn">6</b><span>Сливаем талую воду из бокала</span></li>
+<li><b class="sn">7</b><span>Файн-стрейн (стрейнер + сито)</span></li>
+<li><b class="sn">8</b><span>Украшаем веточкой базилика</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c1">
+  <label class="card-head" for="tc1">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Базиликовый смэш · Tanjaku</div>
+      <div class="csub">Джин &middot; Шейкер</div>
+    </div>
+    <div class="hr">
+      <div class="price">750 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc1" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Листья базилика</span><span class="amt">8-10 листьев</span></div>
+<div class="ir"><span>Джин Таньяку (Япония)</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Лимонный сок</span><span class="amt">25 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">20 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>105 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Мадлим базилик в шейкере</span></li>
+<li><b class="sn">3</b><span>Добавляем остальные ингредиенты</span></li>
+<li><b class="sn">4</b><span>Лёд в шейкер на 1/3</span></li>
+<li><b class="sn">5</b><span>Шейкуем 15–20 сек.</span></li>
+<li><b class="sn">6</b><span>Сливаем талую воду из бокала</span></li>
+<li><b class="sn">7</b><span>Файн-стрейн (стрейнер + сито)</span></li>
+<li><b class="sn">8</b><span>Украшаем веточкой базилика</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c2">
+  <label class="card-head" for="tc2">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Бумажный самолетик</div>
+      <div class="csub">Бурбон &middot; Шейкер</div>
+    </div>
+    <div class="hr">
+      <div class="price">700 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Бурбон</span><span class="tag tgl">Коктейльная рюмка</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc2" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="34" height="36" viewBox="0 0 34 36"><polygon points="2,4 32,4 17,21" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><line x1="17" y1="21" x2="17" y2="31" stroke="#4a7ab5" stroke-width="1.5"/><line x1="9" y1="32" x2="25" y2="32" stroke="#4a7ab5" stroke-width="2" stroke-linecap="round"/></svg><div><div class="gn">Коктейльная рюмка</div><div class="gs">Подаём в коктейльной рюмке</div></div></div>
+      <div class="note">Paper Plane — равные части всех ингредиентов; подаётся стрейт-ап.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Бурбон Jim Beam</span><span class="amt">25 мл</span></div>
+<div class="ir"><span>Кампари</span><span class="amt">25 мл</span></div>
+<div class="ir"><span>Апероль</span><span class="amt">25 мл</span></div>
+<div class="ir"><span>Сок лимона</span><span class="amt">25 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>100 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Охладить рюмку — лёд и оставить</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в шейкер</span></li>
+<li><b class="sn">3</b><span>Лёд в шейкер на 1/3</span></li>
+<li><b class="sn">4</b><span>Шейкуем 15–20 сек.</span></li>
+<li><b class="sn">5</b><span>Выливаем лёд из рюмки</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c3">
+  <label class="card-head" for="tc3">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Базиликовый спритц</div>
+      <div class="csub">Водка &middot; Шейкер+Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">600 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Водка</span><span class="tag tgl">Винный бокал</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc3" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="26" height="42" viewBox="0 0 26 42"><ellipse cx="13" cy="15" rx="10" ry="11" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5"/><path d="M8,24 Q6,29 13,29 Q20,29 18,24" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5"/><line x1="13" y1="29" x2="13" y2="36" stroke="#4a7ab5" stroke-width="1.5"/><line x1="6" y1="37" x2="20" y2="37" stroke="#4a7ab5" stroke-width="2" stroke-linecap="round"/></svg><div><div class="gn">Винный бокал</div><div class="gs">Подаём в винном бокале</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Грушевая водка</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Сок лимона</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Базилик</span><span class="amt">7-8 листьев</span></div>
+<div class="ir"><span>Просекко Шато Тамань</span><span class="amt">90 мл</span></div>
+<div class="ir"><span>Содовая</span><span class="amt">Сплэш</span></div>
+
+        <div class="yield"><span>Выход</span><b>135 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Мадлим базилик в шейкере</span></li>
+<li><b class="sn">3</b><span>Водку, сироп, сок в шейкер</span></li>
+<li><b class="sn">4</b><span>Лёд в шейкер на 1/3, шейкуем 15–20 сек.</span></li>
+<li><b class="sn">5</b><span>Свежий лёд в бокал</span></li>
+<li><b class="sn">6</b><span>Файн-стрейн в бокал</span></li>
+<li><b class="sn">7</b><span>Доливаем просекко, сплэш содовой, перемешиваем</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c4">
+  <label class="card-head" for="tc4">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Апероль шприц</div>
+      <div class="csub">Апероль &middot; Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">650 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Апероль</span><span class="tag tgl">Винный бокал</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc4" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="26" height="42" viewBox="0 0 26 42"><ellipse cx="13" cy="15" rx="10" ry="11" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5"/><path d="M8,24 Q6,29 13,29 Q20,29 18,24" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5"/><line x1="13" y1="29" x2="13" y2="36" stroke="#4a7ab5" stroke-width="1.5"/><line x1="6" y1="37" x2="20" y2="37" stroke="#4a7ab5" stroke-width="2" stroke-linecap="round"/></svg><div><div class="gn">Винный бокал</div><div class="gs">Подаём в винном бокале (balloon)</div></div></div>
+      <div class="note">Классика Spritz: 3 части просекко : 2 части Апероля : 1 часть содовой.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Апероль</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Просекко Шато Тамань</span><span class="amt">90 мл</span></div>
+<div class="ir"><span>Содовая</span><span class="amt">30 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>180 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал до краёв</span></li>
+<li><b class="sn">2</b><span>Наливаем просекко</span></li>
+<li><b class="sn">3</b><span>Наливаем апероль</span></li>
+<li><b class="sn">4</b><span>Доливаем содовую</span></li>
+<li><b class="sn">5</b><span>Перемешиваем 1-2 оборота барной ложкой</span></li>
+<li><b class="sn">6</b><span>Украшаем слайсом апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c5">
+  <label class="card-head" for="tc5">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Макконахи</div>
+      <div class="csub">Текила &middot; Шейкер</div>
+    </div>
+    <div class="hr">
+      <div class="price">650 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Текила</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc5" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Текила</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Огуречный рассол</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Табаско</span><span class="amt">2-3 дэша</span></div>
+<div class="ir"><span>Вустерский соус</span><span class="amt">5 мл</span></div>
+<div class="ir"><span>Лимонный сок</span><span class="amt">20 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>145 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в шейкер</span></li>
+<li><b class="sn">3</b><span>Лёд в шейкер на 1/3</span></li>
+<li><b class="sn">4</b><span>Шейкуем 15–20 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из бокала</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем слайсом маринованного огурца</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c6">
+  <label class="card-head" for="tc6">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Кровавая Мэри</div>
+      <div class="csub">Водка &middot; Шейкер</div>
+    </div>
+    <div class="hr">
+      <div class="price">500 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Водка</span><span class="tag tgl">Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc6" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Хайболл</div><div class="gs">Подаём в хайболле</div></div></div>
+      <div class="note">Пробуйте баланс соли и соусов перед подачей.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Водка (Русский стандарт)</span><span class="amt">45 мл</span></div>
+<div class="ir"><span>Томатный сок</span><span class="amt">120 мл</span></div>
+<div class="ir"><span>Лимонный сок</span><span class="amt">10 мл</span></div>
+<div class="ir"><span>Вустерский соус</span><span class="amt">7.5 мл</span></div>
+<div class="ir"><span>Табаско</span><span class="amt">2-3 дэша</span></div>
+<div class="ir"><span>Соль</span><span class="amt">0.5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>185 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в шейкер</span></li>
+<li><b class="sn">3</b><span>Лёд в шейкер на 1/3</span></li>
+<li><b class="sn">4</b><span>Rolling 10–15 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из бокала</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Пробуем баланс, добавляем соль/соусы</span></li>
+<li><b class="sn">8</b><span>Украшаем сельдереем и лимоном</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c7">
+  <label class="card-head" for="tc7">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Негрони · Tanjaku</div>
+      <div class="csub">Джин &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">800 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc7" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Мартини Rosso</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Кампари</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Джин Таньяку (Япония)</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Цедра апельсина</span><span class="amt">5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>95 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал (круглый лёд)</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из рокса</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c8">
+  <label class="card-head" for="tc8">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Негрони · Hoppers</div>
+      <div class="csub">Джин &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">650 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc8" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Мартини Rosso</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Кампари</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Джин Hoppers</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Цедра апельсина</span><span class="amt">5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>95 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал (круглый лёд)</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из рокса</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c9">
+  <label class="card-head" for="tc9">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Негрони · Малина</div>
+      <div class="csub">Джин &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">600 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc9" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Мартини Rosso</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Кампари</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Джин Barrister на малине</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Цедра апельсина</span><span class="amt">5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>95 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал (круглый лёд)</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из рокса</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c10">
+  <label class="card-head" for="tc10">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Негрони · Вишня</div>
+      <div class="csub">Джин &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">600 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc10" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Мартини Rosso</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Кампари</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Джин Barrister на вишне</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Цедра апельсина</span><span class="amt">5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>95 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал (круглый лёд)</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из рокса</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c11">
+  <label class="card-head" for="tc11">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Негрони · Кофе</div>
+      <div class="csub">Джин &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">600 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc11" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Мартини Rosso</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Кампари</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Джин Barrister на кофе</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Цедра апельсина</span><span class="amt">5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>95 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал (круглый лёд)</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из рокса</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c12">
+  <label class="card-head" for="tc12">
+    <div class="hm">
+      <div class="cn" style="color:#e94560">Tony's Old-Fashioned · Special ★</div>
+      <div class="csub">Виски &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">800 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Виски</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc12" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      <div class="note">Премиальная версия на Pogues Single Malt Whisky.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Виски Pogues</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">10 мл</span></div>
+<div class="ir"><span>Апельсиновый биттер</span><span class="amt">2 дэша</span></div>
+<div class="ir"><span>Ангостура</span><span class="amt">2 дэша</span></div>
+
+        <div class="yield"><span>Выход</span><b>64 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал (круглый лёд)</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из рокса</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c13">
+  <label class="card-head" for="tc13">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Old-Fashioned Classic</div>
+      <div class="csub">Бурбон &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">600 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Бурбон</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc13" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Бурбон Jim Beam</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">10 мл</span></div>
+<div class="ir"><span>Апельсиновый биттер</span><span class="amt">2 дэша</span></div>
+<div class="ir"><span>Ангостура</span><span class="amt">2 дэша</span></div>
+
+        <div class="yield"><span>Выход</span><b>64 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал (круглый лёд)</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из рокса</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c14">
+  <label class="card-head" for="tc14">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Japanese Old-Fashioned</div>
+      <div class="csub">Виски &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">750 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Виски</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc14" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Виски Nirasaki</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">10 мл</span></div>
+<div class="ir"><span>Апельсиновый биттер</span><span class="amt">2 дэша</span></div>
+<div class="ir"><span>Ангостура</span><span class="amt">2 дэша</span></div>
+
+        <div class="yield"><span>Выход</span><b>64 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал (круглый лёд)</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из рокса</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c15">
+  <label class="card-head" for="tc15">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Виски Sour HighBall</div>
+      <div class="csub">Виски &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">700 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Виски</span><span class="tag tgl">Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc15" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Хайболл</div><div class="gs">Подаём в High Ball стакане</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Виски Nirasaki</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Лимонный сок</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Содовая</span><span class="amt">100 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>180 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Доливаем содовую, перемешиваем</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c16">
+  <label class="card-head" for="tc16">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Джин тоник Classic</div>
+      <div class="csub">Джин &middot; Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">450 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc16" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Хайболл</div><div class="gs">Подаём в High Ball стакане</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Джин Hoppers</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Тоник</span><span class="amt">120 мл</span></div>
+<div class="ir"><span>Слайс огурца</span><span class="amt">5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>170 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Охладить бокал — лёд и оставить</span></li>
+<li><b class="sn">2</b><span>Вылить лёд, наполнить свежим крупным льдом</span></li>
+<li><b class="sn">3</b><span>Налить джин</span></li>
+<li><b class="sn">4</b><span>Медленно по стенке налить тоник</span></li>
+<li><b class="sn">5</b><span>Аккуратно перемешать 1-2 оборота</span></li>
+<li><b class="sn">6</b><span>Украшаем слайсом огурца</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c17">
+  <label class="card-head" for="tc17">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Джин тоник Малина</div>
+      <div class="csub">Джин &middot; Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">450 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc17" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Хайболл</div><div class="gs">Подаём в High Ball стакане</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Джин Barrister на малине</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Тоник</span><span class="amt">120 мл</span></div>
+<div class="ir"><span>Малина</span><span class="amt">5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>170 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Охладить бокал — лёд и оставить</span></li>
+<li><b class="sn">2</b><span>Вылить лёд, наполнить свежим крупным льдом</span></li>
+<li><b class="sn">3</b><span>Налить джин</span></li>
+<li><b class="sn">4</b><span>Медленно по стенке налить тоник</span></li>
+<li><b class="sn">5</b><span>Аккуратно перемешать 1-2 оборота</span></li>
+<li><b class="sn">6</b><span>Украшаем свежей малиной</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c18">
+  <label class="card-head" for="tc18">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Джин тоник Вишня</div>
+      <div class="csub">Джин &middot; Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">450 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc18" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Хайболл</div><div class="gs">Подаём в High Ball стакане</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Джин Barrister на вишне</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Тоник</span><span class="amt">120 мл</span></div>
+<div class="ir"><span>Вишня</span><span class="amt">5 г</span></div>
+
+        <div class="yield"><span>Выход</span><b>170 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Охладить бокал — лёд и оставить</span></li>
+<li><b class="sn">2</b><span>Вылить лёд, наполнить свежим крупным льдом</span></li>
+<li><b class="sn">3</b><span>Налить джин</span></li>
+<li><b class="sn">4</b><span>Медленно по стенке налить тоник</span></li>
+<li><b class="sn">5</b><span>Аккуратно перемешать 1-2 оборота</span></li>
+<li><b class="sn">6</b><span>Украшаем вишней</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c19">
+  <label class="card-head" for="tc19">
+    <div class="hm">
+      <div class="cn" style="color:#e94560">Speakeasy Sour · Special ★</div>
+      <div class="csub">Бурбон &middot; Шейкер</div>
+    </div>
+    <div class="hr">
+      <div class="price">700 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Бурбон</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc19" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Бурбон Jim Beam</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Сок лимона</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Апероль</span><span class="amt">7.5 мл</span></div>
+<div class="ir"><span>Красное сухое вино</span><span class="amt">15 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>130 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Всё кроме вина в шейкер</span></li>
+<li><b class="sn">3</b><span>Лёд в шейкер на 1/3</span></li>
+<li><b class="sn">4</b><span>Шейкуем 15–20 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из бокала</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>По барной ложке вино верхним слоем</span></li>
+<li><b class="sn">8</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c20">
+  <label class="card-head" for="tc20">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Goldn Chain</div>
+      <div class="csub">Бурбон &middot; Шейкер</div>
+    </div>
+    <div class="hr">
+      <div class="price">600 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Бурбон</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc20" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Бурбон Jim Beam</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Сок лимона</span><span class="amt">22.5 мл</span></div>
+<div class="ir"><span>Медовый сироп</span><span class="amt">20 мл</span></div>
+<div class="ir"><span>Ферне Бранка</span><span class="amt">7.5 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>110 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в шейкер</span></li>
+<li><b class="sn">3</b><span>Лёд в шейкер на 1/3</span></li>
+<li><b class="sn">4</b><span>Шейкуем 15–20 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду из бокала</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой лимона</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c21">
+  <label class="card-head" for="tc21">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">French 75</div>
+      <div class="csub">Джин &middot; Шейкер+Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">500 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Джин</span><span class="tag tgl">Флюте</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc21" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="14" height="42" viewBox="0 0 14 42"><polygon points="2,3 12,3 10,37 4,37" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><line x1="7" y1="37" x2="7" y2="40" stroke="#4a7ab5" stroke-width="1.5"/><line x1="3" y1="41" x2="11" y2="41" stroke="#4a7ab5" stroke-width="2" stroke-linecap="round"/></svg><div><div class="gn">Флюте</div><div class="gs">Подаём во флюте</div></div></div>
+      <div class="note">Игристое добавляется в конце — газ не трогаем.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Джин Hoppers</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Сок лимона</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Просекко Шато Тамань</span><span class="amt">90 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>165 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Охладить флюте — лёд и оставить</span></li>
+<li><b class="sn">2</b><span>Джин, сок, сироп в шейкер с льдом</span></li>
+<li><b class="sn">3</b><span>Шейкуем 15–20 сек.</span></li>
+<li><b class="sn">4</b><span>Вылить лёд из флюте</span></li>
+<li><b class="sn">5</b><span>Перелить через стрейнер</span></li>
+<li><b class="sn">6</b><span>Медленно доливаем просекко по стенке</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой лимона</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c22">
+  <label class="card-head" for="tc22">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Amaro Tonic</div>
+      <div class="csub">Амаро &middot; Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">550 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Амаро</span><span class="tag tgl">Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc22" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Хайболл</div><div class="gs">Подаём в хайболле</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Амаро Монтенегро</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Тоник</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Содовая</span><span class="amt">30 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>170 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал до краёв</span></li>
+<li><b class="sn">2</b><span>Наливаем амаро</span></li>
+<li><b class="sn">3</b><span>Медленно по стенке наливаем тоник</span></li>
+<li><b class="sn">4</b><span>Доливаем содовую</span></li>
+<li><b class="sn">5</b><span>Перемешиваем 1-2 оборота</span></li>
+<li><b class="sn">6</b><span>Украшаем долькой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c23">
+  <label class="card-head" for="tc23">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Reverse Manhattan</div>
+      <div class="csub">Вермут &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">650 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Вермут</span><span class="tag tgl">Коктейльная рюмка</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc23" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="34" height="36" viewBox="0 0 34 36"><polygon points="2,4 32,4 17,21" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><line x1="17" y1="21" x2="17" y2="31" stroke="#4a7ab5" stroke-width="1.5"/><line x1="9" y1="32" x2="25" y2="32" stroke="#4a7ab5" stroke-width="2" stroke-linecap="round"/></svg><div><div class="gn">Коктейльная рюмка</div><div class="gs">Подаём в коктейльной рюмке</div></div></div>
+      <div class="note">Больше вермута, чем виски — стрейт-ап.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Мартини Rosso</span><span class="amt">60 мл</span></div>
+<div class="ir"><span>Бурбон Jim Beam</span><span class="amt">30 мл</span></div>
+<div class="ir"><span>Апельсиновый биттер</span><span class="amt">2 дэша</span></div>
+
+        <div class="yield"><span>Выход</span><b>170 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Охладить рюмку — лёд и оставить</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Вылить лёд из рюмки</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Украшаем цедрой апельсина</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c24">
+  <label class="card-head" for="tc24">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Whisky Sour</div>
+      <div class="csub">Виски &middot; Dry Shake</div>
+    </div>
+    <div class="hr">
+      <div class="price">480 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Виски</span><span class="tag tgl">Рокс</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc24" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="30" height="36" viewBox="0 0 30 36"><polygon points="4,3 26,3 23,33 7,33" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/><polygon points="8,9 20,9 19,17 9,17" fill="#2a3d5a" opacity=".5"/></svg><div><div class="gn">Рокс</div><div class="gs">Подаём в роксе</div></div></div>
+      <div class="note">Dry shake (без льда) — обязателен для пены из яичного белка.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Dewars White Label</span><span class="amt">25 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">25 мл</span></div>
+<div class="ir"><span>Супержус</span><span class="amt">25 мл</span></div>
+<div class="ir"><span>Яичный белок</span><span class="amt">15 мл</span></div>
+
+        <div class="yield"><span>Выход</span><b>90 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Все ингредиенты в шейкер БЕЗ льда</span></li>
+<li><b class="sn">2</b><span>Dry shake — трясём 15–20 сек.</span></li>
+<li><b class="sn">3</b><span>Добавляем лёд</span></li>
+<li><b class="sn">4</b><span>Шейкуем ещё 10–15 сек.</span></li>
+<li><b class="sn">5</b><span>Файн-стрейн в бокал со льдом</span></li>
+<li><b class="sn">6</b><span>Украшаем долькой лимона и вишней</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c25">
+  <label class="card-head" for="tc25">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Raspberry Spritz</div>
+      <div class="csub">Водка &middot; Шейкер+Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">550 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Водка</span><span class="tag tgl">Винный бокал</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc25" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="26" height="42" viewBox="0 0 26 42"><ellipse cx="13" cy="15" rx="10" ry="11" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5"/><path d="M8,24 Q6,29 13,29 Q20,29 18,24" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5"/><line x1="13" y1="29" x2="13" y2="36" stroke="#4a7ab5" stroke-width="1.5"/><line x1="6" y1="37" x2="20" y2="37" stroke="#4a7ab5" stroke-width="2" stroke-linecap="round"/></svg><div><div class="gn">Винный бокал</div><div class="gs">Подаём в винном бокале</div></div></div>
+      <div class="note">Малину мадлим — просекко добавляется в конце.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Водка (Русский стандарт)</span><span class="amt">20 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">20 мл</span></div>
+<div class="ir"><span>Супержус</span><span class="amt">20 мл</span></div>
+<div class="ir"><span>Просекко Шато Тамань</span><span class="amt">90 мл</span></div>
+<div class="ir"><span>Малина</span><span class="amt">30 г</span></div>
+<div class="ir"><span>Украшение: малина</span><span class="amt">—</span></div>
+<div class="ir"><span>Содовая</span><span class="amt">Сплэш</span></div>
+
+        <div class="yield"><span>Выход</span><b>90 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Мадлим малину в шейкере</span></li>
+<li><b class="sn">3</b><span>Водку, сироп, супержус в шейкер</span></li>
+<li><b class="sn">4</b><span>Лёд в шейкер на 1/3, шейкуем 15–20 сек.</span></li>
+<li><b class="sn">5</b><span>Свежий лёд в бокал</span></li>
+<li><b class="sn">6</b><span>Файн-стрейн в бокал</span></li>
+<li><b class="sn">7</b><span>Доливаем просекко, сплэш содовой</span></li>
+<li><b class="sn">8</b><span>Украшаем свежей малиной</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c26">
+  <label class="card-head" for="tc26">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">Грушевый Колинз</div>
+      <div class="csub">Водка &middot; Шейкер+Билд</div>
+    </div>
+    <div class="hr">
+      <div class="price">600 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Водка</span><span class="tag tgl">Collins/Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc26" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Collins/Хайболл</div><div class="gs">Подаём в Collins стакане</div></div></div>
+      <div class="note">Содовую добавляем в самом конце — не шейкуем.</div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Грушевая водка</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Сок лимона</span><span class="amt">20 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">20 мл</span></div>
+<div class="ir"><span>Содовая</span><span class="amt">Сплэш</span></div>
+<div class="ir"><span>Украшение: мята</span><span class="amt">—</span></div>
+
+        <div class="yield"><span>Выход</span><b>135 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Водка, сок, сироп в шейкер с льдом</span></li>
+<li><b class="sn">3</b><span>Шейкуем 15–20 сек.</span></li>
+<li><b class="sn">4</b><span>Свежий лёд в бокал</span></li>
+<li><b class="sn">5</b><span>Страйн через стрейнер</span></li>
+<li><b class="sn">6</b><span>Доливаем содовую по стенке</span></li>
+<li><b class="sn">7</b><span>Украшаем мятой и лимоном</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c27">
+  <label class="card-head" for="tc27">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">HighBall Yuzushu</div>
+      <div class="csub">Ликёр юзу &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">750 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Ликёр юзу</span><span class="tag tgl">Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc27" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Хайболл</div><div class="gs">Подаём в High Ball стакане</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Yuzushu Pear France</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Лимонный сок</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Содовая</span><span class="amt">до краёв</span></div>
+
+        <div class="yield"><span>Выход</span><b>180 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Доливаем содовую, перемешиваем</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" id="c28">
+  <label class="card-head" for="tc28">
+    <div class="hm">
+      <div class="cn" style="color:#f0eee8">HighBall Yoshino Monogatari</div>
+      <div class="csub">Ликёр шисо &middot; Стир</div>
+    </div>
+    <div class="hr">
+      <div class="price">750 &#8381;</div>
+      <div class="tags"><span class="tag tsp">Ликёр шисо</span><span class="tag tgl">Хайболл</span></div>
+    </div>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tc28" class="toggle">
+  <div class="body">
+    <div class="sep"></div>
+    <div class="grow">
+      <div class="glass-row"><svg width="20" height="42" viewBox="0 0 20 42"><polygon points="3,3 17,3 14,39 6,39" fill="#1e2d4a" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg><div><div class="gn">Хайболл</div><div class="gs">Подаём в High Ball стакане</div></div></div>
+      
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Состав</div>
+        <div class="ir"><span>Shiso Yoshino Monogatari</span><span class="amt">50 мл</span></div>
+<div class="ir"><span>Сахарный сироп</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Лимонный сок</span><span class="amt">15 мл</span></div>
+<div class="ir"><span>Содовая</span><span class="amt">до краёв</span></div>
+
+        <div class="yield"><span>Выход</span><b>180 мл</b></div>
+      </div>
+      <div class="sep"></div>
+      <div class="sec">
+        <div class="sct">Приготовление</div>
+        <ol class="steps"><li><b class="sn">1</b><span>Лёд в бокал, пока готовим</span></li>
+<li><b class="sn">2</b><span>Все ингредиенты в смесительный стакан</span></li>
+<li><b class="sn">3</b><span>Лёд в стакан на 1/3</span></li>
+<li><b class="sn">4</b><span>Мешаем барной ложкой 30 сек.</span></li>
+<li><b class="sn">5</b><span>Сливаем талую воду</span></li>
+<li><b class="sn">6</b><span>Переливаем через стрейнер</span></li>
+<li><b class="sn">7</b><span>Доливаем содовую, перемешиваем</span></li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="sj">
+  <label class="sj-head" for="tsj">
+    <span class="sj-label">Лимонный SuperJuice</span>
+    <span class="arr">&#8250;</span>
+  </label>
+  <input type="checkbox" id="tsj" class="sj-toggle">
+  <div class="sj-body">
+    <div class="sep"></div>
+    <div class="sec">
+      <div class="sct">Ингредиенты</div>
+      <div class="ir"><span>Лимоны</span><span class="amt">&mdash;</span></div>
+      <div class="ir"><span>Лимонная кислота</span><span class="amt">по калькулятору</span></div>
+      <div class="ir"><span>Цитрат калия</span><span class="amt">2 г на литр</span></div>
+      <div class="ir"><span>Сахар</span><span class="amt">10 г на литр</span></div>
+      <div class="ir"><span>Эфирное масло лимона</span><span class="amt">4 капли на литр</span></div>
+    </div>
+    <div class="sep"></div>
+    <div class="sec">
+      <div class="sct">Приготовление</div>
+      <ol class="steps">
+        <li><b class="sn">1</b><span>Срезаем цедру с лимонов, минимизируя белые волокна</span></li>
+        <li><b class="sn">2</b><span>Взвешиваем цедру &rarr; калькулятор: kevinkos.com/super-juice-calculator-1</span></li>
+        <li><b class="sn">3</b><span>Помещаем цедру в блендер</span></li>
+        <li><b class="sn">4</b><span>Лимонная кислота (из калькулятора)</span></li>
+        <li><b class="sn">5</b><span>Цитрат калия &mdash; 2 г на литр выхода</span></li>
+        <li><b class="sn">6</b><span>Сахар &mdash; 10 г на литр выхода</span></li>
+        <li><b class="sn">7</b><span>Лимонное масло &mdash; 4 капли на литр выхода</span></li>
+        <li><b class="sn">8</b><span>Вода (из калькулятора)</span></li>
+        <li><b class="sn">9</b><span>Блендируем до максимального измельчения цедры</span></li>
+        <li><b class="sn">10</b><span>Фильтруем через кофе-фильтр</span></li>
+        <li><b class="sn">11</b><span>Разливаем по бутылкам. Хранить ~1 неделю</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script>
+var D=[['c0','базиликовый смэш · hoppers джин · шейкер листья базилика джин hoppers лимонный сок сахарный сироп'],['c1','базиликовый смэш · tanjaku джин · шейкер листья базилика джин таньяку (япония) лимонный сок сахарный сироп'],['c2','бумажный самолетик бурбон · шейкер бурбон jim beam кампари апероль сок лимона'],['c3','базиликовый спритц водка · шейкер+билд грушевая водка сок лимона сахарный сироп базилик просекко шато тамань содовая'],['c4','апероль шприц апероль · билд апероль просекко шато тамань содовая'],['c5','макконахи текила · шейкер текила огуречный рассол табаско вустерский соус лимонный сок'],['c6','кровавая мэри водка · шейкер водка (русский стандарт) томатный сок лимонный сок вустерский соус табаско соль'],['c7','негрони · tanjaku джин · стир мартини rosso кампари джин таньяку (япония) цедра апельсина'],['c8','негрони · hoppers джин · стир мартини rosso кампари джин hoppers цедра апельсина'],['c9','негрони · малина джин · стир мартини rosso кампари джин barrister на малине цедра апельсина'],['c10','негрони · вишня джин · стир мартини rosso кампари джин barrister на вишне цедра апельсина'],['c11','негрони · кофе джин · стир мартини rosso кампари джин barrister на кофе цедра апельсина'],['c12','tony\'s old-fashioned · special ★ виски · стир виски pogues сахарный сироп апельсиновый биттер ангостура'],['c13','old-fashioned classic бурбон · стир бурбон jim beam сахарный сироп апельсиновый биттер ангостура'],['c14','japanese old-fashioned виски · стир виски nirasaki сахарный сироп апельсиновый биттер ангостура'],['c15','виски sour highball виски · стир виски nirasaki сахарный сироп лимонный сок содовая'],['c16','джин тоник classic джин · билд джин hoppers тоник слайс огурца'],['c17','джин тоник малина джин · билд джин barrister на малине тоник малина'],['c18','джин тоник вишня джин · билд джин barrister на вишне тоник вишня'],['c19','speakeasy sour · special ★ бурбон · шейкер бурбон jim beam сок лимона сахарный сироп апероль красное сухое вино'],['c20','goldn chain бурбон · шейкер бурбон jim beam сок лимона медовый сироп ферне бранка'],['c21','french 75 джин · шейкер+билд джин hoppers сок лимона сахарный сироп просекко шато тамань'],['c22','amaro tonic амаро · билд амаро монтенегро тоник содовая'],['c23','reverse manhattan вермут · стир мартини rosso бурбон jim beam апельсиновый биттер'],['c24','whisky sour виски · dry shake dewars white label сахарный сироп супержус яичный белок'],['c25','raspberry spritz водка · шейкер+билд водка (русский стандарт) сахарный сироп супержус просекко шато тамань малина украшение: малина содовая'],['c26','грушевый колинз водка · шейкер+билд грушевая водка сок лимона сахарный сироп содовая украшение: мята'],['c27','highball yuzushu ликёр юзу · стир yuzushu pear france сахарный сироп лимонный сок содовая'],['c28','highball yoshino monogatari ликёр шисо · стир shiso yoshino monogatari сахарный сироп лимонный сок содовая лимоны лимонная кислота цитрат калия сахар эфирное масло лимона']];
+var activeSp=null;
+function norm(s){return(s||'').toLowerCase().replace(/\u0451/g,'\u0435').replace(/\u0439/g,'\u0438');}
+function run(){
+  var q=norm(document.getElementById('q').value);
+  document.getElementById('sx').style.display=q?'block':'none';
+  var shown=0;
+  for(var i=0;i<D.length;i++){
+    var ok=(!q||norm(D[i][1]).indexOf(q)>=0)&&(!activeSp||norm(D[i][1]).indexOf(norm(activeSp))>=0);
+    var el=document.getElementById(D[i][0]);
+    if(el){if(ok){el.classList.remove('hidden');shown++;}else{el.classList.add('hidden');}}
+  }
+  document.getElementById('nr').style.display=shown===0?'block':'none';
+}
+document.getElementById('q').addEventListener('input',run);
+document.getElementById('sx').addEventListener('click',function(){
+  document.getElementById('q').value='';
+  this.style.display='none';
+  run();
+  document.getElementById('q').focus();
+});
+var SPS=['Джин', 'Бурбон', 'Виски', 'Водка', 'Текила', 'Вермут', 'Амаро', 'Апероль', 'Ликёр юзу', 'Ликёр шисо'];
+var chs=document.getElementById('chs');
+for(var i=0;i<SPS.length;i++){
+  (function(sp){
+    var b=document.createElement('button');
+    b.className='ch';
+    b.textContent=sp;
+    b.type='button';
+    b.onclick=function(){
+      activeSp=(activeSp===sp)?null:sp;
+      var all=chs.querySelectorAll('.ch');
+      for(var j=0;j<all.length;j++)all[j].className=all[j].textContent===activeSp?'ch on':'ch';
+      run();
+    };
+    chs.appendChild(b);
+  })(SPS[i]);
+}
+</script>
+</body>
+</html>
