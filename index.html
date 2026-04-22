@@ -9,95 +9,93 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:15px;line-height:1.5}
 .hidden{display:none!important}
-
-/* ═══ NAV BAR ═══ */
-.nav{position:sticky;top:0;z-index:100;display:flex;border-bottom:1px solid #e0ddd8}
-.nav-btn{flex:1;padding:10px 0;text-align:center;font-size:12px;font-weight:600;border:none;cursor:pointer;font-family:inherit;transition:background .15s}
-
-/* ═══ LIGHT THEME (guest) ═══ */
 .light{background:#faf9f7;color:#1a1a1a}
-.light .nav{background:#fff}
-.light .nav-btn{background:#fff;color:#999}
-.light .nav-btn.on{color:#c0392b;border-bottom:2px solid #c0392b}
-.light .hdr{background:#fff;border-bottom:1px solid #e8e6e2;padding:14px 16px 12px;position:sticky;top:37px;z-index:50}
-.light .logo{font-size:20px;font-weight:800;color:#1a1a1a}
-.light .logo em{color:#c0392b;font-style:normal}
-.light .sw input{background:#f4f3f0;border:1.5px solid #e0ddd8;border-radius:12px;color:#1a1a1a}
-.light .sw input:focus{border-color:#c0392b}
-.light .sw input::placeholder{color:#aaa}
-.light .si{color:#aaa}
-.light .card{background:#fff;border:1px solid #e8e6e2;border-radius:14px;margin-bottom:8px}
-.light .card.open{border-color:#ccc}
-.light .cn{color:#1a1a1a}
-.light .cdesc{color:#888}
-.light .price{color:#c0392b}
-.light .sep{background:#f0eee8}
-.light .ir{border-color:#f5f3ef}
-.light .amt{color:#999}
-.light .sct{color:#bbb}
-
-/* ═══ DARK THEME (staff) ═══ */
+.light .hdr{background:#fff;border-bottom:1px solid #e8e6e2;padding:14px 16px 10px;position:sticky;top:0;z-index:50}
+.light .logo{font-size:18px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#1a1a1a;text-align:center;margin-bottom:10px}
+.light .logo em{font-style:normal;font-weight:400;letter-spacing:0;text-transform:none;color:#999;font-size:13px;display:block;margin-top:2px}
+.light .sw input{background:#f4f3f0;border:1px solid #e0ddd8;color:#1a1a1a}
+.light .sw input:focus{border-color:#999}
+.light .sw input::placeholder{color:#bbb}
+.light .si{color:#bbb}
+.light .section-title{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#1a1a1a;padding:24px 0 12px;border-bottom:1px solid #1a1a1a}
+.light .item{padding:14px 0;border-bottom:1px solid #eee}
+.light .item-name{color:#1a1a1a}
+.light .item-price{color:#1a1a1a}
+.light .item-comp{color:#888}
+.light .item-str span{color:#ddd}
+.light .item-str span.on{color:#1a1a1a}
+.light .detail-row{border-color:#f5f3ef}
+.light .detail-row span:last-child{color:#999}
+.light .rec{background:#f7f6f3;color:#888}
+.light .rec strong{color:#555}
+.light .ft{border:1px solid #ddd;background:#fff;color:#999}
+.light .ft.on{background:#1a1a1a;border-color:#1a1a1a;color:#fff}
+.light .staff-link{color:#ccc}
 .dark{background:#0d0d1a;color:#f0eee8}
 .dark .nav{background:#09091a;border-color:#2a2a48}
 .dark .nav-btn{background:#09091a;color:#555}
 .dark .nav-btn.on{color:#e94560;border-bottom:2px solid #e94560}
-.dark .hdr{background:#0d0d1a;border-bottom:1px solid #2a2a48;padding:14px 16px 12px;position:sticky;top:37px;z-index:50}
-.dark .logo{font-size:20px;font-weight:800;color:#f0eee8}
+.dark .hdr{background:#0d0d1a;border-bottom:1px solid #2a2a48;padding:14px 16px 10px;position:sticky;top:37px;z-index:50}
+.dark .logo{font-size:18px;font-weight:800;color:#f0eee8;text-align:left}
 .dark .logo em{color:#e94560;font-style:normal}
-.dark .sw input{background:#16162a;border:1.5px solid #2a2a48;border-radius:12px;color:#f0eee8}
+.dark .sw input{background:#16162a;border:1.5px solid #2a2a48;color:#f0eee8}
 .dark .sw input:focus{border-color:#e94560}
 .dark .sw input::placeholder{color:#444}
 .dark .si{color:#555}
-.dark .card{background:#16162a;border:1px solid #2a2a48;border-radius:14px;margin-bottom:8px}
-.dark .card.open{border-color:#3a3a60}
-.dark .cn{color:#f0eee8}
-.dark .cdesc{color:#666}
-.dark .price{color:#f7a440}
-.dark .sep{background:#2a2a48}
-.dark .ir{border-color:#1e1e36}
-.dark .amt{color:#666}
-.dark .sct{color:#555}
-
-/* ═══ COMMON UI ═══ */
+.dark .section-title{color:#888;border-color:#2a2a48;padding:20px 0 10px}
+.dark .item{padding:12px 0;border-bottom:1px solid #1e1e36}
+.dark .item-name{color:#f0eee8}
+.dark .item-price{color:#f7a440}
+.dark .item-comp{color:#666}
+.dark .item-str span{color:#333}
+.dark .item-str span.on{color:#e94560}
+.dark .detail-row{border-color:#1e1e36}
+.dark .detail-row span:last-child{color:#555}
+.dark .rec{background:#1a1a2e;color:#666}
+.dark .rec strong{color:#888}
+.dark .ft{border:1px solid #2a2a48;background:transparent;color:#666}
+.dark .ft.on{background:#e94560;border-color:#e94560;color:#fff}
+.nav{position:sticky;top:0;z-index:100;display:flex;border-bottom:1px solid}
+.nav-btn{flex:1;padding:10px 0;text-align:center;font-size:12px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
 .sw{position:relative;margin-bottom:8px}
-.sw input{width:100%;height:44px;font-size:16px;padding:0 40px;outline:none;-webkit-appearance:none;font-family:inherit}
-.si{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;pointer-events:none}
-.sx{position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;color:#888;font-size:24px;line-height:1;padding:2px 4px;cursor:pointer;display:none;font-family:sans-serif}
-.list{padding:10px 16px 40px}
-.card{overflow:hidden;cursor:pointer;-webkit-user-select:none;user-select:none}
-.card-head{display:flex;align-items:center;padding:13px 14px;gap:8px}
-.hm{flex:1;min-width:0}
-.cn{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cdesc{font-size:12px;margin-top:3px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.hr{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
-.price{font-size:15px;font-weight:700}
-.tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
-.tag{font-size:10px;padding:2px 7px;border-radius:8px;white-space:nowrap}
-.t-sp{background:#eef6ee;color:#2d7a2d}
-.t-gl{background:#fef5e7;color:#b8860b}
-.t-taste{background:#fdf0f0;color:#c0392b}
-.arr{flex-shrink:0;font-size:20px;color:#ccc;transition:transform 0.25s;display:inline-block}
-.card.open .arr{transform:rotate(90deg)}
-.body{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
-.card.open .body{max-height:2000px}
-.sep{height:1px;margin:0 14px}
-.sec{padding:10px 14px}
-.sct{font-size:10px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
-.ir{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid;font-size:13px}
-.ir:last-of-type{border:none}
-.amt{margin-left:10px;text-align:right;flex-shrink:0}
-.norezultat{text-align:center;padding:50px 20px;color:#bbb;font-size:14px;display:none}
-.similar{margin:8px 14px 12px;padding:10px 12px;background:#f9f7f4;border-radius:10px;border:1px solid #ece9e4;font-size:13px;color:#555}
-.dark .similar{background:#1a1a2e;border-color:#2a2a48;color:#888}
-.similar b{font-size:10px;color:#bbb;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:4px;font-weight:500}
-.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1px solid #ddd;background:#fff;color:#777;font-size:12px;font-family:inherit;cursor:pointer;white-space:nowrap;-webkit-appearance:none}
-.chip.on{background:#1a1a1a;border-color:#1a1a1a;color:#fff}
-.dark .chip{border-color:#2a2a48;background:transparent;color:#888}
-.dark .chip.on{background:#e94560;border-color:#e94560;color:#fff}
-
-/* ═══ LOGIN ═══ */
+.sw input{width:100%;height:40px;font-size:15px;padding:0 36px;border-radius:10px;outline:none;-webkit-appearance:none;font-family:inherit}
+.si{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:16px;height:16px;pointer-events:none}
+.sx{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#999;font-size:22px;line-height:1;padding:2px 4px;cursor:pointer;display:none;font-family:sans-serif}
+.content{padding:0 16px 40px}
+.item{cursor:pointer;-webkit-user-select:none;user-select:none}
+.item.hidden{display:none}
+.item-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.item-name{font-size:15px;font-weight:600}
+.item-price{font-size:15px;font-weight:600;flex-shrink:0}
+.item-comp{font-size:12px;margin-top:3px;line-height:1.5}
+.item-vol{font-size:11px;color:#bbb;margin-top:2px;display:inline-flex;align-items:center;gap:4px}
+.item-str{display:inline-flex;gap:1px}
+.item-str span{font-size:10px}
+.item-detail{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
+.item.open .item-detail{max-height:600px}
+.item-detail-inner{padding-top:10px}
+.detail-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid}
+.detail-row:last-child{border:none}
+.rec{margin-top:8px;padding:8px 10px;border-radius:8px;font-size:12px;line-height:1.5}
+.rec strong{font-weight:600}
+.steps-list{margin-top:8px;list-style:none}
+.steps-list li{display:flex;gap:8px;padding:5px 0;font-size:12px;border-bottom:1px solid #1e1e36}
+.steps-list li:last-child{border:none}
+.sn{flex-shrink:0;width:18px;height:18px;background:#e94560;color:#fff;border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.filter-bar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:4px}
+.filter-bar::-webkit-scrollbar{display:none}
+.ft{flex-shrink:0;padding:4px 12px;border-radius:16px;font-size:11px;font-family:inherit;cursor:pointer;white-space:nowrap;-webkit-appearance:none}
+.stars-bar{display:flex;align-items:center;gap:6px;padding:4px 0}
+.stars-label{font-size:11px;color:#bbb;min-width:55px}
+.star{width:22px;height:22px;cursor:pointer;color:#ddd;font-size:18px;line-height:22px;text-align:center}
+.star.filled{color:#1a1a1a}
+.dark .star{color:#333}
+.dark .star.filled{color:#e94560}
+.stars-text{font-size:11px;color:#999;margin-left:4px}
+.norezultat{text-align:center;padding:50px 20px;color:#ccc;font-size:14px;display:none}
+.staff-link{text-align:center;padding:20px;font-size:12px;cursor:pointer}
+.user-bar{display:flex;justify-content:space-between;padding:4px 16px;font-size:11px;color:#555}
+.footer-info{text-align:center;padding:20px;font-size:11px;color:#ccc;line-height:1.6}
 .login-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#0d0d1a;padding:20px}
 .login-box{background:#16162a;border:1px solid #2a2a48;border-radius:16px;padding:32px 24px;width:100%;max-width:360px}
 .login-box h2{color:#f0eee8;font-size:20px;font-weight:700;margin-bottom:6px}
@@ -109,10 +107,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-se
 .login-btn:disabled{opacity:.5}
 .login-err{color:#e94560;font-size:12px;margin-top:10px;text-align:center;min-height:18px}
 .login-back{color:#555;font-size:12px;margin-top:16px;text-align:center;cursor:pointer}
-
-/* ═══ ADMIN ═══ */
 .admin-page{padding:16px;max-width:500px;margin:0 auto}
-.admin-page h2{font-size:18px;font-weight:700;margin-bottom:16px}
+.admin-page h2{font-size:18px;font-weight:700;margin-bottom:16px;color:#f0eee8}
 .admin-card{background:#16162a;border:1px solid #2a2a48;border-radius:12px;padding:16px;margin-bottom:12px}
 .admin-card h3{font-size:14px;font-weight:600;color:#f0eee8;margin-bottom:12px}
 .admin-card label{display:block;color:#888;font-size:12px;margin-bottom:4px;margin-top:10px}
@@ -120,243 +116,98 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-se
 .admin-card input:focus{border-color:#e94560}
 .admin-btn{width:100%;height:40px;background:#e94560;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;margin-top:14px;font-family:inherit}
 .admin-msg{font-size:12px;margin-top:8px;text-align:center;min-height:16px}
-.staff-list{margin-top:6px}
 .staff-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #2a2a48;font-size:13px;color:#ccc}
 .staff-item:last-child{border:none}
 .staff-role{font-size:10px;padding:2px 8px;border-radius:8px;background:#1a2a1a;color:#6bcf7f}
-.logout-link{color:#e94560;font-size:12px;text-align:center;padding:20px;cursor:pointer}
-.staff-link{text-align:center;padding:20px;font-size:12px;color:#999;cursor:pointer}
-.staff-link:hover{color:#c0392b}
-.user-bar{display:flex;justify-content:space-between;align-items:center;padding:4px 16px;font-size:11px;color:#555}
 </style>
 </head>
 <body>
-
 <div id="app"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 var SB_URL='https://xrfwzfmmhrsapdvzlubw.supabase.co';
 var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhyZnd6Zm1taHJzYXBkdnpsdWJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3NTY0NTIsImV4cCI6MjA5MjMzMjQ1Mn0.KRvBR1EWU9S9pmyeVVN6UY067n8LJbyxKgEk6VbZKvw';
 var sb=window.supabase.createClient(SB_URL,SB_KEY);
 var app=document.getElementById('app');
-var currentUser=null;
-var currentProfile=null;
-var currentTab='menu';
-
-var COCKTAILS=[
-{n:"Базиликовый смэш",s:"Hoppers",p:650,sp:"Джин",str:2,taste:["свежий"],desc:"Джин, лимон, базилик. Свежий и лёгкий, хорошо пьётся в тёплую погоду.",like:"Джин Физз, Мохито",gl:"Рокс",i:[["Листья базилика","8-10"],["Джин Hoppers","60 мл"],["Лимонный сок","25 мл"],["Сахарный сироп","20 мл"]],y:105,st:["Лёд в бокал, пока готовим","Мадлим базилик в шейкере","Остальные ингредиенты в шейкер","Лёд в шейкер на 1/3","Шейкуем 15–20 сек.","Сливаем талую воду из бокала","Файн-стрейн (стрейнер + сито)","Украшаем веточкой базилика"]},
-{n:"Базиликовый смэш",s:"Tanjaku",p:750,sp:"Джин",str:2,taste:["свежий"],desc:"То же самое, но на японском джине — чуть мягче и цветочнее.",like:"Джин Физз, Мохито",gl:"Рокс",i:[["Листья базилика","8-10"],["Джин Таньяку","60 мл"],["Лимонный сок","25 мл"],["Сахарный сироп","20 мл"]],y:105,st:["Лёд в бокал, пока готовим","Мадлим базилик в шейкере","Остальные ингредиенты в шейкер","Лёд в шейкер на 1/3","Шейкуем 15–20 сек.","Сливаем талую воду из бокала","Файн-стрейн (стрейнер + сито)","Украшаем веточкой базилика"]},
-{n:"Бумажный самолетик",s:"",p:700,sp:"Бурбон",str:2,taste:["горький","кислый"],desc:"Бурбон, кампари, апероль, лимон — всего поровну. Горчит, но не агрессивно.",like:"Последнее слово, Дивизьон",gl:"Коктейльная рюмка",i:[["Бурбон Jim Beam","25 мл"],["Кампари","25 мл"],["Апероль","25 мл"],["Сок лимона","25 мл"]],y:100,st:["Охладить рюмку — лёд и оставить","Все ингредиенты в шейкер","Лёд в шейкер на 1/3","Шейкуем 15–20 сек.","Выливаем лёд из рюмки","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Базиликовый спритц",s:"",p:600,sp:"Водка",str:1,taste:["свежий","игристый"],desc:"Грушевая водка, базилик и просекко. Лёгкий, с пузырьками.",like:"Хьюго, Беллини",gl:"Винный бокал",i:[["Грушевая водка","15 мл"],["Сок лимона","15 мл"],["Базилик","7-8 листьев"],["Просекко","90 мл"]],y:135,st:["Лёд в бокал, пока готовим","Мадлим базилик в шейкере","Водку, сироп, сок в шейкер","Лёд, шейкуем 15–20 сек.","Свежий лёд в бокал","Файн-стрейн в бокал","Доливаем просекко, сплэш содовой"]},
-{n:"Апероль шприц",s:"",p:650,sp:"Апероль",str:1,taste:["горький","игристый"],desc:"Апероль и просекко. Классика. Низкий градус, апельсиновая горчинка.",like:"Кампари спритц, Беллини",gl:"Винный бокал",i:[["Апероль","60 мл"],["Просекко","90 мл"],["Содовая","30 мл"]],y:180,st:["Лёд в бокал до краёв","Наливаем просекко","Наливаем апероль","Доливаем содовую","Перемешиваем 1-2 оборота","Украшаем слайсом апельсина"]},
-{n:"Макконахи",s:"",p:650,sp:"Текила",str:2,taste:["солёный","острый"],desc:"Текила с огуречным рассолом, табаско и вустером. Солёный, острый.",like:"Маргарита, Палома",gl:"Рокс",i:[["Текила","60 мл"],["Огуречный рассол","60 мл"],["Табаско","2-3 дэша"],["Лимонный сок","20 мл"]],y:145,st:["Лёд в бокал, пока готовим","Все ингредиенты в шейкер","Лёд в шейкер на 1/3","Шейкуем 15–20 сек.","Сливаем талую воду","Переливаем через стрейнер","Украшаем маринованным огурцом"]},
-{n:"Кровавая Мэри",s:"",p:500,sp:"Водка",str:2,taste:["солёный","острый"],desc:"Водка, томатный сок, специи. Густой, пряный.",like:"Цезарь, Мичелада",gl:"Хайболл",i:[["Водка","45 мл"],["Томатный сок","120 мл"],["Лимонный сок","10 мл"],["Вустерский соус","7.5 мл"]],y:185,st:["Лёд в бокал, пока готовим","Все ингредиенты в шейкер","Rolling 10–15 сек.","Переливаем через стрейнер","Пробуем баланс","Украшаем сельдереем и лимоном"]},
-{n:"Негрони",s:"Tanjaku",p:800,sp:"Джин",str:3,taste:["горький","крепкий"],desc:"Горький и крепкий. Японский джин делает его чуть мягче обычного Негрони.",like:"Булевардье, Americano",gl:"Рокс",i:[["Мартини Rosso","30 мл"],["Кампари","30 мл"],["Джин Таньяку","30 мл"]],y:95,st:["Лёд в бокал (круглый)","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Сливаем воду","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Негрони",s:"Hoppers",p:650,sp:"Джин",str:3,taste:["горький","крепкий"],desc:"Классический Негрони. Горько-сладкий, крепкий. Если знаешь — знаешь.",like:"Булевардье, Americano",gl:"Рокс",i:[["Мартини Rosso","30 мл"],["Кампари","30 мл"],["Джин Hoppers","30 мл"]],y:95,st:["Лёд в бокал (круглый)","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Сливаем воду","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Негрони",s:"Малина",p:600,sp:"Джин",str:3,taste:["горький","ягодный"],desc:"Малиновый джин. Горечь кампари на месте, но есть ягодный оттенок. Мягче классики.",like:"Негрони, Клубничный дайкири",gl:"Рокс",i:[["Мартини Rosso","30 мл"],["Кампари","30 мл"],["Джин на малине","30 мл"]],y:95,st:["Лёд в бокал (круглый)","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Сливаем воду","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Негрони",s:"Вишня",p:600,sp:"Джин",str:3,taste:["горький","ягодный"],desc:"Вишнёвый джин. Чуть теплее и слаще оригинала.",like:"Негрони, Манхэттен",gl:"Рокс",i:[["Мартини Rosso","30 мл"],["Кампари","30 мл"],["Джин на вишне","30 мл"]],y:95,st:["Лёд в бокал (круглый)","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Сливаем воду","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Негрони",s:"Кофе",p:600,sp:"Джин",str:3,taste:["горький","крепкий"],desc:"Кофейный джин + кампари. Горький вдвойне. Хорошо после еды.",like:"Эспрессо мартини, Блэк рашен",gl:"Рокс",i:[["Мартини Rosso","30 мл"],["Кампари","30 мл"],["Джин на кофе","30 мл"]],y:95,st:["Лёд в бокал (круглый)","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Сливаем воду","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Tony's Old-Fashioned",s:"Special",p:800,sp:"Виски",str:3,taste:["крепкий","сладкий"],desc:"Односолодовый виски, сироп, биттеры. Крепко, просто, дорого.",like:"Old Fashioned, Sazerac",gl:"Рокс",i:[["Виски Pogues","50 мл"],["Сахарный сироп","10 мл"],["Биттеры","4 дэша"]],y:64,st:["Лёд в бокал (круглый)","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Сливаем воду","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Old-Fashioned Classic",s:"",p:600,sp:"Бурбон",str:3,taste:["крепкий","сладкий"],desc:"Бурбон, сироп, биттеры. Классика, которой лет двести.",like:"Sazerac, Манхэттен",gl:"Рокс",i:[["Бурбон Jim Beam","50 мл"],["Сахарный сироп","10 мл"],["Биттеры","4 дэша"]],y:64,st:["Лёд в бокал (круглый)","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Сливаем воду","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Japanese Old-Fashioned",s:"",p:750,sp:"Виски",str:3,taste:["крепкий","сладкий"],desc:"То же самое на японском виски. Мягче бурбонового, фруктовее.",like:"Old Fashioned, Хайболл",gl:"Рокс",i:[["Виски Nirasaki","50 мл"],["Сахарный сироп","10 мл"],["Биттеры","4 дэша"]],y:64,st:["Лёд в бокал (круглый)","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Сливаем воду","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Виски Sour HighBall",s:"",p:700,sp:"Виски",str:2,taste:["кислый","свежий"],desc:"Виски, лимон, содовая. По сути кисловатый виски-лимонад.",like:"Виски Сауэр, Линчбург лимонад",gl:"Хайболл",i:[["Виски Nirasaki","50 мл"],["Лимонный сок","15 мл"],["Содовая","100 мл"]],y:180,st:["Лёд в бокал","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем через стрейнер","Доливаем содовую"]},
-{n:"Джин тоник Classic",s:"",p:450,sp:"Джин",str:2,taste:["свежий"],desc:"Джин и тоник. Всё.",like:"Водка тоник, Джин Физз",gl:"Хайболл",i:[["Джин Hoppers","50 мл"],["Тоник","120 мл"]],y:170,st:["Охладить бокал льдом","Свежий крупный лёд","Налить джин","Тоник по стенке","Перемешать 1-2 оборота"]},
-{n:"Джин тоник Малина",s:"",p:450,sp:"Джин",str:2,taste:["свежий","ягодный"],desc:"Малиновый джин с тоником. Ягоднее обычного, чуть сладковатый.",like:"Пинк Джин тоник",gl:"Хайболл",i:[["Джин на малине","50 мл"],["Тоник","120 мл"]],y:170,st:["Охладить бокал льдом","Свежий крупный лёд","Налить джин","Тоник по стенке","Перемешать 1-2 оборота","Украшаем малиной"]},
-{n:"Джин тоник Вишня",s:"",p:450,sp:"Джин",str:2,taste:["свежий","ягодный"],desc:"Вишнёвый джин с тоником. Суше, чем малиновый.",like:"Слоу Джин Физз",gl:"Хайболл",i:[["Джин на вишне","50 мл"],["Тоник","120 мл"]],y:170,st:["Охладить бокал льдом","Свежий крупный лёд","Налить джин","Тоник по стенке","Перемешать 1-2 оборота","Украшаем вишней"]},
-{n:"Speakeasy Sour",s:"Special",p:700,sp:"Бурбон",str:2,taste:["кислый","сладкий"],desc:"Бурбон, лимон, апероль и слой красного вина сверху.",like:"Нью-Йорк Сауэр, Виски Сауэр",gl:"Рокс",i:[["Бурбон Jim Beam","60 мл"],["Сок лимона","30 мл"],["Апероль","7.5 мл"],["Красное вино","15 мл"]],y:130,st:["Лёд в бокал","Всё кроме вина в шейкер","Лёд, шейкуем 15–20 сек.","Сливаем воду","Переливаем через стрейнер","Вино верхним слоем по ложке","Украшаем цедрой апельсина"]},
-{n:"Goldn Chain",s:"",p:600,sp:"Бурбон",str:2,taste:["сладкий","горький"],desc:"Бурбон, мёд, лимон, ферне бранка. Тёплый, с горчинкой на финише.",like:"Пенициллин, Голд Раш",gl:"Рокс",i:[["Бурбон Jim Beam","60 мл"],["Медовый сироп","20 мл"],["Ферне Бранка","7.5 мл"]],y:110,st:["Лёд в бокал","Все ингредиенты в шейкер","Лёд, шейкуем 15–20 сек.","Переливаем через стрейнер","Украшаем цедрой лимона"]},
-{n:"French 75",s:"",p:500,sp:"Джин",str:2,taste:["кислый","игристый"],desc:"Джин, лимон, сироп и просекко сверху. Игристый, кисловатый.",like:"Мимоза, Кир Рояль",gl:"Флюте",i:[["Джин Hoppers","30 мл"],["Сок лимона","15 мл"],["Просекко","90 мл"]],y:165,st:["Охладить флюте","Джин, сок, сироп в шейкер","Шейкуем 15–20 сек.","Переливаем во флюте","Доливаем просекко по стенке","Украшаем цедрой лимона"]},
-{n:"Amaro Tonic",s:"",p:550,sp:"Амаро",str:1,taste:["горький","свежий"],desc:"Амаро и тоник. Травяной, горьковатый, низкий градус.",like:"Апероль шприц, Фернет Кола",gl:"Хайболл",i:[["Амаро Монтенегро","30 мл"],["Тоник","60 мл"],["Содовая","30 мл"]],y:170,st:["Лёд до краёв","Наливаем амаро","Тоник по стенке","Доливаем содовую","Перемешиваем 1-2 оборота","Украшаем долькой апельсина"]},
-{n:"Reverse Manhattan",s:"",p:650,sp:"Вермут",str:2,taste:["сладкий","крепкий"],desc:"Вермут, немного бурбона, биттер. Мягче обычного Манхэттена.",like:"Манхэттен, Роб Рой",gl:"Коктейльная рюмка",i:[["Мартини Rosso","60 мл"],["Бурбон Jim Beam","30 мл"],["Биттер","2 дэша"]],y:170,st:["Охладить рюмку","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем через стрейнер","Украшаем цедрой апельсина"]},
-{n:"Whisky Sour",s:"",p:480,sp:"Виски",str:2,taste:["кислый","сладкий"],desc:"Виски, лимон, сироп, яичный белок. Кислый, с пеной сверху. Классика.",like:"Амаретто Сауэр, Дайкири",gl:"Рокс",i:[["Dewars White Label","25 мл"],["Сахарный сироп","25 мл"],["Супержус","25 мл"],["Яичный белок","15 мл"]],y:90,st:["Всё в шейкер БЕЗ льда","Dry shake 15–20 сек.","Добавляем лёд","Шейкуем 10–15 сек.","Файн-стрейн в бокал","Украшаем лимоном и вишней"]},
-{n:"Raspberry Spritz",s:"",p:550,sp:"Водка",str:1,taste:["ягодный","игристый"],desc:"Водка, малина, просекко. Лёгкий, ягодный, газированный.",like:"Кир Рояль, Беллини",gl:"Винный бокал",i:[["Водка","20 мл"],["Малина","30 г"],["Просекко","90 мл"]],y:90,st:["Лёд в бокал","Мадлим малину","Водку, сироп, супержус в шейкер","Шейкуем 15–20 сек.","Файн-стрейн в бокал","Доливаем просекко","Украшаем малиной"]},
-{n:"Грушевый Колинз",s:"",p:600,sp:"Водка",str:2,taste:["свежий","кислый"],desc:"Грушевая водка, лимон, содовая. Длинный, фруктовый, несладкий.",like:"Том Коллинз, Водка Рикки",gl:"Хайболл",i:[["Грушевая водка","50 мл"],["Сок лимона","20 мл"],["Содовая","сплэш"]],y:135,st:["Лёд в бокал","Водка, сок, сироп в шейкер","Шейкуем 15–20 сек.","Свежий лёд в бокал","Страйн через стрейнер","Содовая по стенке","Украшаем мятой и лимоном"]},
-{n:"HighBall Yuzushu",s:"",p:750,sp:"Ликёр юзу",str:1,taste:["кислый","свежий"],desc:"Юзу-ликёр с содовой. Цитрусовый, японский, непривычный.",like:"Лимончелло спритц, Юзу сауэр",gl:"Хайболл",i:[["Yuzushu Pear France","50 мл"],["Лимонный сок","15 мл"],["Содовая","до краёв"]],y:180,st:["Лёд в бокал","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем через стрейнер","Доливаем содовую"]},
-{n:"HighBall Yoshino",s:"Monogatari",p:750,sp:"Ликёр шисо",str:1,taste:["свежий"],desc:"Ликёр на шисо с содовой. Травяной, свежий. Такого вы раньше точно не пили.",like:"Хайболл, Шисо Мохито",gl:"Хайболл",i:[["Shiso Yoshino Monogatari","50 мл"],["Лимонный сок","15 мл"],["Содовая","до краёв"]],y:180,st:["Лёд в бокал","Ингредиенты в смесительный стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем через стрейнер","Доливаем содовую"]}
-];
-
-var SPIRITS=['Джин','Бурбон','Виски','Водка','Текила','Вермут','Амаро','Апероль','Ликёр юзу','Ликёр шисо'];
+var currentUser=null,currentProfile=null,currentTab='menu';
+var activeSpirit=null,activeTaste=null,activeStr=0;
+var SECS=[
+{title:"JAPANESE EDITION",items:[
+{n:"Sour Highball",p:700,comp:"Японский виски Nirasaki / содовая / лимонный сок",str:2,sp:"Виски",taste:["кислый","свежий"],like:"Виски Сауэр, Линчбург лимонад",i:[["Виски Nirasaki","50 мл"],["Лимонный сок","15 мл"],["Содовая","100 мл"]],st:["Лёд в бокал","Ингредиенты в стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем","Доливаем содовую"]},
+{n:"Japanese Old Fashioned",p:750,comp:"Японский виски Nirasaki / Angostura / сахарный сироп / апельсин",str:4,sp:"Виски",taste:["крепкий","сладкий"],like:"Old Fashioned, Sazerac",i:[["Виски Nirasaki","50 мл"],["Сахарный сироп","10 мл"],["Биттеры","4 дэша"]],st:["Лёд (круглый)","Ингредиенты в стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем","Украшаем цедрой"]},
+{n:"Japanese Negroni",p:750,comp:"Японский джин Tanjaku / Martini Rosso / Campari",str:5,sp:"Джин",taste:["горький","крепкий"],like:"Булевардье, Americano",i:[["Мартини Rosso","30 мл"],["Кампари","30 мл"],["Джин Таньяку","30 мл"]],st:["Лёд (круглый)","Ингредиенты в стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем","Украшаем цедрой"]},
+{n:"Japanese Basil Smash",p:750,comp:"Японский джин Tanjaku / лимонный сок / сахарный сироп / базилик",str:3,sp:"Джин",taste:["свежий","кислый"],like:"Джин Физз, Мохито",i:[["Джин Таньяку","60 мл"],["Лимонный сок","25 мл"],["Сахарный сироп","20 мл"],["Базилик","8-10"]],st:["Лёд в бокал","Мадлим базилик","Остальное в шейкер","Шейкуем 15-20 сек.","Файн-стрейн","Украшаем базиликом"]},
+{n:"Yoshino Monogatari La France",p:750,comp:"Японский грушевый ликёр Yoshino / лимонный сок / сахарный сироп / содовая",str:1,sp:"Ликёр",taste:["свежий","кислый"],like:"Лимончелло спритц, Юзу сауэр",i:[["Yuzushu Pear France","50 мл"],["Лимонный сок","15 мл"],["Содовая","до краёв"]],st:["Лёд в бокал","Ингредиенты в стакан","Мешаем 30 сек.","Переливаем","Доливаем содовую"]},
+{n:"Yoshino Monogatari Shiso",p:750,comp:"Японский базиликово-мятный ликёр Shiso / лимонный сок / сахарный сироп / содовая",str:1,sp:"Ликёр",taste:["свежий"],like:"Хайболл, Мохито",i:[["Shiso Yoshino","50 мл"],["Лимонный сок","15 мл"],["Содовая","до краёв"]],st:["Лёд в бокал","Ингредиенты в стакан","Мешаем 30 сек.","Переливаем","Доливаем содовую"]}
+]},
+{title:"КОКТЕЙЛИ",items:[
+{n:"Old Fashioned",p:600,comp:"Бурбон Jim Beam / Angostura / тростниковый сахар / апельсин",str:4,sp:"Бурбон",taste:["крепкий","сладкий"],like:"Sazerac, Манхэттен",i:[["Бурбон Jim Beam","50 мл"],["Сахарный сироп","10 мл"],["Биттеры","4 дэша"]],st:["Лёд (круглый)","Ингредиенты в стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем","Украшаем цедрой"]},
+{n:"Negroni",p:650,comp:"Джин Hoppers / Martini Rosso / Campari",str:5,sp:"Джин",taste:["горький","крепкий"],like:"Булевардье, Americano",i:[["Мартини Rosso","30 мл"],["Кампари","30 мл"],["Джин Hoppers","30 мл"]],st:["Лёд (круглый)","Ингредиенты в стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем","Украшаем цедрой"]},
+{n:"Special Negroni",p:600,comp:"Джин на малине, вишне или кофе / Martini Rosso / Campari",str:5,sp:"Джин",taste:["горький","ягодный"],like:"Негрони, Эспрессо мартини",i:[["Мартини Rosso","30 мл"],["Кампари","30 мл"],["Джин Barrister","30 мл"]],st:["Лёд (круглый)","Ингредиенты в стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем","Украшаем цедрой"]},
+{n:"Paper Plane",p:700,comp:"Jim Beam / Campari / Madruzzo Aperitivo / лимонный сок",str:3,sp:"Бурбон",taste:["горький","кислый"],like:"Последнее слово, Дивизьон",i:[["Бурбон","25 мл"],["Кампари","25 мл"],["Апероль","25 мл"],["Сок лимона","25 мл"]],st:["Охладить рюмку","Все в шейкер","Шейкуем 15-20 сек.","Переливаем","Украшаем цедрой"]},
+{n:"McConaughey",p:650,comp:"Текила Tres Sombreros / огуречный рассол / табаско / вустерский соус / лимонный сок",str:3,sp:"Текила",taste:["солёный","острый"],like:"Маргарита, Палома",i:[["Текила","60 мл"],["Огуречный рассол","60 мл"],["Табаско","2-3 дэша"],["Лимонный сок","20 мл"]],st:["Лёд в бокал","Все в шейкер","Шейкуем 15-20 сек.","Переливаем","Украшаем огурцом"]},
+{n:"Bloody Mary",p:500,comp:"Водка / томатный сок / лимонный сок / вустерский соус / табаско / соль",str:2,sp:"Водка",taste:["солёный","острый"],like:"Цезарь, Мичелада",i:[["Водка","45 мл"],["Томатный сок","120 мл"],["Лимонный сок","10 мл"],["Вустерский соус","7.5 мл"]],st:["Лёд в бокал","Все в шейкер","Rolling 10-15 сек.","Переливаем","Пробуем баланс","Украшаем сельдереем"]},
+{n:"Basil Smash",p:650,comp:"Джин Hoppers / лимонный сок / сахарный сироп / базилик",str:3,sp:"Джин",taste:["свежий","кислый"],like:"Джин Физз, Мохито",i:[["Джин Hoppers","60 мл"],["Лимонный сок","25 мл"],["Сахарный сироп","20 мл"],["Базилик","8-10"]],st:["Лёд в бокал","Мадлим базилик","Остальное в шейкер","Шейкуем 15-20 сек.","Файн-стрейн","Украшаем базиликом"]},
+{n:"Basil Spritz",p:600,comp:"Грушевая водка / лимонный сок / сахарный сироп / базилик / просекко / содовая",str:1,sp:"Водка",taste:["свежий","игристый"],like:"Хьюго, Беллини",i:[["Грушевая водка","15 мл"],["Сок лимона","15 мл"],["Базилик","7-8"],["Просекко","90 мл"]],st:["Лёд в бокал","Мадлим базилик","Шейкуем 15-20 сек.","Файн-стрейн","Доливаем просекко"]},
+{n:"Aperol Spritz",p:650,comp:"Aperol / просекко / содовая",str:1,sp:"Апероль",taste:["горький","игристый"],like:"Кампари спритц, Беллини",i:[["Апероль","60 мл"],["Просекко","90 мл"],["Содовая","30 мл"]],st:["Лёд до краёв","Просекко","Апероль","Содовая","Перемешиваем","Украшаем апельсином"]},
+{n:"Gin & Tonic",p:450,comp:"Выдержанный на малине или вишне джин / тоник",str:2,sp:"Джин",taste:["свежий","ягодный"],like:"Водка тоник, Пинк Джин",i:[["Джин Barrister","50 мл"],["Тоник","120 мл"]],st:["Охладить бокал","Свежий лёд","Джин","Тоник по стенке","Перемешать"]}
+]},
+{title:"SPECIAL BY SOPRANO",items:[
+{n:"Tony's Old-Fashioned",p:800,comp:"Односолодовый виски Pogues / Angostura / тростниковый сахар / апельсин",str:5,sp:"Виски",taste:["крепкий","сладкий"],like:"Old Fashioned, Sazerac",i:[["Виски Pogues","50 мл"],["Сахарный сироп","10 мл"],["Биттеры","4 дэша"]],st:["Лёд (круглый)","Ингредиенты в стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем","Украшаем цедрой"]},
+{n:"Speakeasy Sour",p:700,comp:"Бурбон Jim Beam / Aperol / Cabernet Sauvignon / сахарный сироп / лимонный сок",str:3,sp:"Бурбон",taste:["кислый","сладкий"],like:"Нью-Йорк Сауэр, Виски Сауэр",i:[["Бурбон Jim Beam","60 мл"],["Сок лимона","30 мл"],["Апероль","7.5 мл"],["Красное вино","15 мл"]],st:["Лёд в бокал","Всё кроме вина в шейкер","Шейкуем 15-20 сек.","Переливаем","Вино по ложке сверху","Украшаем цедрой"]},
+{n:"Gold Chain",p:600,comp:"Бурбон Jim Beam / Fernet-Branca / медовый сироп / лимонный сок",str:3,sp:"Бурбон",taste:["сладкий","горький"],like:"Пенициллин, Голд Раш",i:[["Бурбон Jim Beam","60 мл"],["Медовый сироп","60 мл"],["Ферне Бранка","7.5 мл"]],st:["Лёд в бокал","Все в шейкер","Шейкуем 15-20 сек.","Переливаем","Украшаем цедрой лимона"]},
+{n:"French 75",p:500,comp:"Джин Hoppers / сахарный сироп / лимонный сок / игристое",str:2,sp:"Джин",taste:["кислый","игристый"],like:"Мимоза, Кир Рояль",i:[["Джин Hoppers","30 мл"],["Сок лимона","15 мл"],["Просекко","90 мл"]],st:["Охладить флюте","Джин, сок, сироп в шейкер","Шейкуем 15-20 сек.","Переливаем","Доливаем просекко","Украшаем цедрой"]},
+{n:"Amaro Tonic",p:550,comp:"Amaro Montenegro / тоник",str:1,sp:"Амаро",taste:["горький","свежий"],like:"Апероль шприц, Фернет Кола",i:[["Амаро Монтенегро","30 мл"],["Тоник","60 мл"],["Содовая","30 мл"]],st:["Лёд до краёв","Амаро","Тоник по стенке","Содовая","Перемешиваем","Украшаем апельсином"]},
+{n:"Reverse Manhattan",p:650,comp:"Бурбон Jim Beam / Martini Rosso / Angostura",str:3,sp:"Вермут",taste:["сладкий","крепкий"],like:"Манхэттен, Роб Рой",i:[["Мартини Rosso","60 мл"],["Бурбон Jim Beam","30 мл"],["Биттер","2 дэша"]],st:["Охладить рюмку","Ингредиенты в стакан","Лёд на 1/3","Мешаем 30 сек.","Переливаем","Украшаем цедрой"]},
+{n:"Whisky Sour",p:480,comp:"Dewar's White Label / сахарный сироп / лимонный сок / яичный белок",str:2,sp:"Виски",taste:["кислый","сладкий"],like:"Амаретто Сауэр, Дайкири",i:[["Dewars White Label","25 мл"],["Сахарный сироп","25 мл"],["Супержус","25 мл"],["Яичный белок","15 мл"]],st:["Всё БЕЗ льда в шейкер","Dry shake 15-20 сек.","Добавляем лёд","Шейкуем 10-15 сек.","Файн-стрейн","Украшаем лимоном и вишней"]},
+{n:"Raspberry Spritz",p:550,comp:"Водка / сахарный сироп / лимонный сок / просекко / малина / сплеш содовой",str:1,sp:"Водка",taste:["ягодный","игристый"],like:"Кир Рояль, Беллини",i:[["Водка","20 мл"],["Малина","30 г"],["Просекко","90 мл"]],st:["Лёд в бокал","Мадлим малину","Шейкуем 15-20 сек.","Файн-стрейн","Доливаем просекко","Украшаем малиной"]},
+{n:"Pear Collins",p:600,comp:"Грушевая водка / лимонный сок / сахарный сироп / содовая / мята",str:2,sp:"Водка",taste:["свежий","кислый"],like:"Том Коллинз, Водка Рикки",i:[["Грушевая водка","50 мл"],["Сок лимона","20 мл"],["Содовая","сплэш"]],st:["Лёд в бокал","Водка, сок, сироп в шейкер","Шейкуем 15-20 сек.","Свежий лёд","Переливаем","Содовая по стенке","Украшаем мятой"]}
+]}];
+var SPIRITS=['Джин','Бурбон','Виски','Водка','Текила','Вермут','Амаро','Апероль','Ликёр'];
 var TASTES=['свежий','кислый','сладкий','горький','игристый','ягодный','крепкий','солёный','острый'];
-var activeTaste=null,activeSpirit=null,openCard=null;
-
 function norm(s){return(s||'').toLowerCase().replace(/\u0451/g,'\u0435');}
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-function buildMenuCard(d,isStaff){
-  var card=document.createElement('div');
-  card.className='card';
-  var sub=d.s?' <span style="font-weight:400;opacity:.5;font-size:14px">\u00b7 '+esc(d.s)+'</span>':'';
-  var tasteTags='';
-  if(!isStaff){for(var j=0;j<d.taste.length;j++)tasteTags+='<span class="tag t-taste">'+d.taste[j]+'</span>';}
-  var head=document.createElement('div');
-  head.className='card-head';
-  head.innerHTML='<div class="hm"><div class="cn">'+esc(d.n)+sub+'</div>'+(d.desc?'<div class="cdesc">'+esc(d.desc)+'</div>':'')+'</div><div class="hr"><div class="price">'+d.p+' \u20bd</div><div class="tags"><span class="tag t-sp">'+esc(d.sp)+'</span><span class="tag t-gl">'+esc(d.gl)+'</span>'+tasteTags+'</div></div><span class="arr">\u203a</span>';
-  var ingsHtml='';
-  for(var k=0;k<d.i.length;k++)ingsHtml+='<div class="ir"><span>'+esc(d.i[k][0])+'</span><span class="amt">'+esc(d.i[k][1])+'</span></div>';
-  var stepsHtml='';
-  if(isStaff&&d.st){stepsHtml='<div class="sep"></div><div class="sec"><div class="sct">Приготовление</div><ul style="list-style:none">';for(var m=0;m<d.st.length;m++)stepsHtml+='<li style="display:flex;gap:8px;padding:5px 0;border-bottom:1px solid;font-size:13px"><span style="flex-shrink:0;width:18px;height:18px;background:#e94560;color:#fff;border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">'+(m+1)+'</span><span>'+esc(d.st[m])+'</span></li>';stepsHtml+='</ul></div>';}
-  var likeHtml=(!isStaff&&d.like)?'<div class="similar"><b>Если нравится — попробуйте</b>'+esc(d.like)+'</div>':'';
-  var body=document.createElement('div');
-  body.className='body';
-  body.innerHTML='<div class="sep"></div><div class="sec"><div class="sct">Состав</div>'+ingsHtml+'<div style="display:flex;justify-content:space-between;padding:6px 10px;margin-top:6px;background:rgba(128,128,128,.07);border-radius:8px;font-size:12px;opacity:.7"><span>Выход</span><b>'+d.y+' мл \u00b7 '+esc(d.gl)+'</b></div></div>'+stepsHtml+likeHtml;
-  card.appendChild(head);card.appendChild(body);
-  head.onclick=function(){var o=card.className.indexOf('open')>=0;if(openCard&&openCard!==card)openCard.className=openCard.className.replace(' open','');if(o){card.className=card.className.replace(' open','');openCard=null;}else{card.className+=' open';openCard=card;}};
-  card.setAttribute('data-search',norm(d.n+' '+d.s+' '+d.sp+' '+(d.desc||'')+' '+d.taste.join(' ')+' '+d.i.map(function(r){return r[0];}).join(' ')));
-  card.setAttribute('data-str',d.str);
-  return card;
-}
-
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function starsHtml(v){var h='<span class="item-str">';for(var i=1;i<=5;i++)h+='<span'+(i<=v?' class="on"':'')+'>&#9733;</span>';return h+'</span>';}
+function menuHdr(){return '<div class="sw"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="search" id="q" placeholder="Найти коктейль\u2026" autocomplete="off" autocorrect="off" spellcheck="false"><button class="sx" id="sx" type="button">\u00d7</button></div><div class="filter-bar" id="sp-chips"></div><div class="filter-bar" id="ta-chips" style="margin-top:2px"></div><div class="stars-bar"><span class="stars-label">Крепость</span><span class="star" data-v="1">&#9733;</span><span class="star" data-v="2">&#9733;</span><span class="star" data-v="3">&#9733;</span><span class="star" data-v="4">&#9733;</span><span class="star" data-v="5">&#9733;</span><span class="stars-text" id="str-text">любая</span></div>';}
 function renderMenu(isStaff){
   var q=norm(document.getElementById('q').value);
   document.getElementById('sx').style.display=q?'block':'none';
-  var listEl=document.getElementById('menu-list');
-  listEl.innerHTML='';openCard=null;var shown=0;
-  for(var i=0;i<COCKTAILS.length;i++){
-    var d=COCKTAILS[i];
-    var card=buildMenuCard(d,isStaff);
-    var mq=!q||card.getAttribute('data-search').indexOf(q)>=0;
-    var ms=!activeSpirit||d.sp===activeSpirit;
-    var mt=!activeTaste||d.taste.indexOf(activeTaste)>=0;
-    if(mq&&ms&&mt){listEl.appendChild(card);shown++;}
-  }
-  document.getElementById('nr').style.display=shown===0?'block':'none';
+  var el=document.getElementById('mc');el.innerHTML='';var total=0;
+  for(var s=0;s<SECS.length;s++){var sec=SECS[s];var items=[];
+    for(var i=0;i<sec.items.length;i++){var d=sec.items[i];
+      if((!q||norm(d.n+' '+d.comp+' '+d.sp+' '+d.taste.join(' ')).indexOf(q)>=0)&&(!activeSpirit||d.sp===activeSpirit)&&(!activeTaste||d.taste.indexOf(activeTaste)>=0)&&(activeStr===0||d.str<=activeStr))items.push(d);}
+    if(items.length>0){var t=document.createElement('div');t.className='section-title';t.textContent=sec.title;el.appendChild(t);
+      for(var j=0;j<items.length;j++){var d=items[j];var div=document.createElement('div');div.className='item';
+        var dr='';for(var k=0;k<d.i.length;k++)dr+='<div class="detail-row"><span>'+esc(d.i[k][0])+'</span><span>'+esc(d.i[k][1])+'</span></div>';
+        var sh='';if(isStaff&&d.st){sh='<ul class="steps-list">';for(var m=0;m<d.st.length;m++)sh+='<li><span class="sn">'+(m+1)+'</span><span>'+esc(d.st[m])+'</span></li>';sh+='</ul>';}
+        var rh=(!isStaff&&d.like)?'<div class="rec">\u0412\u0430\u043c \u043f\u043e\u043d\u0440\u0430\u0432\u0438\u0442\u0441\u044f, \u0435\u0441\u043b\u0438 \u0432\u044b \u043b\u044e\u0431\u0438\u0442\u0435 <strong>'+esc(d.like)+'</strong></div>':'';
+        div.innerHTML='<div class="item-top"><span class="item-name">'+esc(d.n)+'</span><span class="item-price">'+d.p+'</span></div><div class="item-comp">'+esc(d.comp)+'</div><div class="item-vol">'+starsHtml(d.str)+'</div><div class="item-detail"><div class="item-detail-inner">'+dr+sh+rh+'</div></div>';
+        div.addEventListener('click',function(){var o=this.className.indexOf('open')>=0;var p=document.querySelector('.item.open');if(p&&p!==this)p.className='item';this.className=o?'item':'item open';});
+        el.appendChild(div);total++;}}}
+  document.getElementById('nr').style.display=total===0?'block':'none';
 }
-
-function makeChips(arr,containerId,type){
-  var el=document.getElementById(containerId);if(!el)return;
-  for(var i=0;i<arr.length;i++){(function(val){
-    var b=document.createElement('button');b.className='chip';b.textContent=val;b.type='button';
-    b.onclick=function(){if(type==='taste'){activeTaste=(activeTaste===val)?null:val;}else{activeSpirit=(activeSpirit===val)?null:val;}var all=el.querySelectorAll('.chip');var active=type==='taste'?activeTaste:activeSpirit;for(var j=0;j<all.length;j++)all[j].className=all[j].textContent===active?'chip on':'chip';renderMenu(!!currentProfile);};
-    el.appendChild(b);
-  })(arr[i]);}
+function setupMenu(isStaff){
+  activeSpirit=null;activeTaste=null;activeStr=0;
+  var el,arr,type;
+  el=document.getElementById('sp-chips');if(el)for(var i=0;i<SPIRITS.length;i++){(function(v){var b=document.createElement('button');b.className='ft';b.textContent=v;b.type='button';b.onclick=function(){activeSpirit=(activeSpirit===v)?null:v;var a=el.querySelectorAll('.ft');for(var j=0;j<a.length;j++)a[j].className=a[j].textContent===activeSpirit?'ft on':'ft';renderMenu(isStaff);};el.appendChild(b);})(SPIRITS[i]);}
+  el=document.getElementById('ta-chips');if(el)for(var i=0;i<TASTES.length;i++){(function(v){var b=document.createElement('button');b.className='ft';b.textContent=v;b.type='button';b.onclick=function(){activeTaste=(activeTaste===v)?null:v;var a=el.querySelectorAll('.ft');for(var j=0;j<a.length;j++)a[j].className=a[j].textContent===activeTaste?'ft on':'ft';renderMenu(isStaff);};el.appendChild(b);})(TASTES[i]);}
+  document.getElementById('q').addEventListener('input',function(){renderMenu(isStaff);});
+  document.getElementById('sx').addEventListener('click',function(){document.getElementById('q').value='';this.style.display='none';renderMenu(isStaff);});
+  var stars=document.querySelectorAll('.star');for(var i=0;i<stars.length;i++){(function(idx){stars[idx].addEventListener('click',function(){var v=parseInt(this.getAttribute('data-v'));activeStr=(activeStr===v)?0:v;for(var j=0;j<stars.length;j++)stars[j].className=(j<activeStr)?'star filled':'star';document.getElementById('str-text').textContent=activeStr===0?'любая':activeStr<=2?'лёгкие':activeStr<=3?'средние':'крепкие';renderMenu(isStaff);});})(i);}
+  renderMenu(isStaff);
 }
-
-function showGuest(){
-  var theme='light';
-  app.className=theme;
-  app.innerHTML='<div class="nav"><button class="nav-btn on" type="button">Коктейли</button></div><div class="hdr"><div class="logo">Холл <em>\u00b7 коктейли</em></div><div class="sw"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="search" id="q" placeholder="Название или ингредиент\u2026" autocomplete="off" autocorrect="off" spellcheck="false"><button class="sx" id="sx" type="button">\u00d7</button></div><div class="chips" id="taste-chips"></div><div class="chips" id="spirit-chips" style="margin-top:4px"></div></div><div class="norezultat" id="nr">Ничего не нашлось</div><div class="list" id="menu-list"></div><div class="staff-link" id="staff-link">Для сотрудников</div>';
-  activeTaste=null;activeSpirit=null;
-  makeChips(TASTES,'taste-chips','taste');
-  makeChips(SPIRITS,'spirit-chips','spirit');
-  document.getElementById('q').addEventListener('input',function(){renderMenu(false);});
-  document.getElementById('sx').addEventListener('click',function(){document.getElementById('q').value='';this.style.display='none';renderMenu(false);});
-  document.getElementById('staff-link').addEventListener('click',function(){showLogin();});
-  renderMenu(false);
-}
-
-function showLogin(){
-  app.className='';
-  app.innerHTML='<div class="login-page"><div class="login-box"><h2>Вход для сотрудников</h2><p>Введи данные от аккаунта</p><label>Email</label><input type="email" id="l-email" autocomplete="email"><label>Пароль</label><input type="password" id="l-pass" autocomplete="current-password"><button class="login-btn" id="l-btn" type="button">Войти</button><div class="login-err" id="l-err"></div><div class="login-back" id="l-back">\u2190 Назад к меню</div></div></div>';
-  document.getElementById('l-btn').addEventListener('click',doLogin);
-  document.getElementById('l-pass').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
-  document.getElementById('l-back').addEventListener('click',function(){showGuest();});
-}
-
-function doLogin(){
-  var email=document.getElementById('l-email').value.trim();
-  var pass=document.getElementById('l-pass').value;
-  var btn=document.getElementById('l-btn');
-  var err=document.getElementById('l-err');
-  if(!email||!pass){err.textContent='Заполни оба поля';return;}
-  btn.disabled=true;err.textContent='';
-  sb.auth.signInWithPassword({email:email,password:pass}).then(function(res){
-    if(res.error){err.textContent=res.error.message;btn.disabled=false;return;}
-    currentUser=res.data.user;
-    loadProfile();
-  });
-}
-
-function loadProfile(){
-  sb.from('profiles').select('*').eq('id',currentUser.id).single().then(function(res){
-    if(res.error||!res.data){currentProfile={name:'Сотрудник',role:'bartender'};}
-    else{currentProfile=res.data;}
-    showStaff();
-  });
-}
-
-function showStaff(){
-  var isManager=currentProfile&&currentProfile.role==='manager';
-  app.className='dark';
-  var navHtml='<div class="nav"><button class="nav-btn on" data-tab="menu" type="button">Рецепты</button>'+(isManager?'<button class="nav-btn" data-tab="admin" type="button">Управление</button>':'')+'<button class="nav-btn" data-tab="logout" type="button">Выход</button></div>';
-  app.innerHTML=navHtml+'<div class="user-bar"><span>'+esc(currentProfile.name)+'</span><span>'+esc(currentProfile.role==='manager'?'Управляющий':'Бармен')+'</span></div><div id="view-container"></div>';
-  var btns=app.querySelectorAll('.nav-btn');
-  for(var i=0;i<btns.length;i++){btns[i].addEventListener('click',function(){
-    var tab=this.getAttribute('data-tab');
-    if(tab==='logout'){doLogout();return;}
-    currentTab=tab;
-    for(var j=0;j<btns.length;j++)btns[j].className='nav-btn'+(btns[j].getAttribute('data-tab')===currentTab?' on':'');
-    renderStaffView();
-  });}
-  currentTab='menu';renderStaffView();
-}
-
-function renderStaffView(){
-  var container=document.getElementById('view-container');
-  if(currentTab==='menu'){
-    container.innerHTML='<div class="hdr"><div class="logo">Бар <em>\u00b7 Холл</em></div><div class="sw"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="search" id="q" placeholder="Название, ингредиент\u2026" autocomplete="off" autocorrect="off" spellcheck="false"><button class="sx" id="sx" type="button">\u00d7</button></div><div class="chips" id="spirit-chips"></div></div><div class="norezultat" id="nr">Ничего не найдено</div><div class="list" id="menu-list"></div>';
-    activeTaste=null;activeSpirit=null;
-    makeChips(SPIRITS,'spirit-chips','spirit');
-    document.getElementById('q').addEventListener('input',function(){renderMenu(true);});
-    document.getElementById('sx').addEventListener('click',function(){document.getElementById('q').value='';this.style.display='none';renderMenu(true);});
-    renderMenu(true);
-  } else if(currentTab==='admin'){
-    showAdmin(container);
-  }
-}
-
-function showAdmin(container){
-  container.innerHTML='<div class="admin-page"><h2>Управление</h2><div class="admin-card"><h3>Добавить бармена</h3><label>Имя</label><input type="text" id="a-name"><label>Email</label><input type="email" id="a-email"><label>Пароль</label><input type="text" id="a-pass" value="hall'+Math.floor(1000+Math.random()*9000)+'"><button class="admin-btn" id="a-btn" type="button">Создать аккаунт</button><div class="admin-msg" id="a-msg"></div></div><div class="admin-card"><h3>Сотрудники</h3><div class="staff-list" id="staff-list">Загрузка...</div></div></div>';
-  document.getElementById('a-btn').addEventListener('click',createBartender);
-  loadStaffList();
-}
-
-function createBartender(){
-  var name=document.getElementById('a-name').value.trim();
-  var email=document.getElementById('a-email').value.trim();
-  var pass=document.getElementById('a-pass').value.trim();
-  var msg=document.getElementById('a-msg');
-  if(!name||!email||!pass){msg.textContent='Заполни все поля';msg.style.color='#e94560';return;}
-  msg.textContent='Создаём...';msg.style.color='#888';
-  sb.auth.signUp({email:email,password:pass,options:{data:{name:name,role:'bartender'}}}).then(function(res){
-    if(res.error){msg.textContent=res.error.message;msg.style.color='#e94560';return;}
-    var uid=res.data.user.id;
-    sb.from('profiles').insert({id:uid,name:name,role:'bartender'}).then(function(r2){
-      if(r2.error){msg.textContent='Юзер создан, но профиль не записался: '+r2.error.message;msg.style.color='#f7a440';}
-      else{msg.textContent='Готово! Логин: '+email+' / '+pass;msg.style.color='#1D9E75';document.getElementById('a-name').value='';document.getElementById('a-email').value='';document.getElementById('a-pass').value='hall'+Math.floor(1000+Math.random()*9000);loadStaffList();}
-    });
-  });
-}
-
-function loadStaffList(){
-  var el=document.getElementById('staff-list');
-  sb.from('profiles').select('*').order('created_at').then(function(res){
-    if(res.error){el.textContent='Ошибка: '+res.error.message;return;}
-    if(!res.data||res.data.length===0){el.textContent='Пока никого';return;}
-    var html='';
-    for(var i=0;i<res.data.length;i++){
-      var p=res.data[i];
-      html+='<div class="staff-item"><span>'+esc(p.name)+'</span><span class="staff-role">'+esc(p.role==='manager'?'Управляющий':'Бармен')+'</span></div>';
-    }
-    el.innerHTML=html;
-  });
-}
-
-function doLogout(){
-  sb.auth.signOut().then(function(){
-    currentUser=null;currentProfile=null;showGuest();
-  });
-}
-
-// ═══ INIT ═══
-sb.auth.getSession().then(function(res){
-  if(res.data.session){
-    currentUser=res.data.session.user;
-    loadProfile();
-  } else {
-    showGuest();
-  }
-});
+function showGuest(){app.className='light';app.innerHTML='<div class="hdr"><div class="logo">HALL<em>bar \u00b7 коктейли</em></div>'+menuHdr()+'</div><div class="norezultat" id="nr">Ничего не нашлось</div><div class="content" id="mc"></div><div class="footer-info">Hall \u2014 уютный диджей бар,<br>созданный единомышленниками<br>как место для концертов и арт-проектов.</div><div class="staff-link" id="sl">Для сотрудников</div>';document.getElementById('sl').addEventListener('click',showLogin);setupMenu(false);}
+function showLogin(){app.className='';app.innerHTML='<div class="login-page"><div class="login-box"><h2>Вход для сотрудников</h2><p>Введи данные от аккаунта</p><label>Email</label><input type="email" id="le" autocomplete="email"><label>Пароль</label><input type="password" id="lp" autocomplete="current-password"><button class="login-btn" id="lb" type="button">Войти</button><div class="login-err" id="lerr"></div><div class="login-back" id="lbk">\u2190 Назад к меню</div></div></div>';document.getElementById('lb').addEventListener('click',doLogin);document.getElementById('lp').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});document.getElementById('lbk').addEventListener('click',showGuest);}
+function doLogin(){var e=document.getElementById('le').value.trim(),p=document.getElementById('lp').value,b=document.getElementById('lb'),er=document.getElementById('lerr');if(!e||!p){er.textContent='Заполни оба поля';return;}b.disabled=true;er.textContent='';sb.auth.signInWithPassword({email:e,password:p}).then(function(r){if(r.error){er.textContent=r.error.message;b.disabled=false;return;}currentUser=r.data.user;loadProfile();});}
+function loadProfile(){sb.from('profiles').select('*').eq('id',currentUser.id).single().then(function(r){if(r.error||!r.data){currentProfile={name:currentUser.email,role:'bartender'};}else{currentProfile=r.data;}showStaff();});}
+function showStaff(){var isM=currentProfile&&currentProfile.role==='manager';app.className='dark';var tabs='<div class="nav"><button class="nav-btn on" data-tab="menu" type="button">Рецепты</button>';if(isM)tabs+='<button class="nav-btn" data-tab="admin" type="button">Управление</button>';tabs+='<button class="nav-btn" data-tab="logout" type="button">Выход</button></div>';app.innerHTML=tabs+'<div class="user-bar"><span>'+esc(currentProfile.name)+'</span><span>'+(isM?'Управляющий':'Бармен')+'</span></div><div id="vw"></div>';var btns=app.querySelectorAll('.nav-btn');for(var i=0;i<btns.length;i++){btns[i].addEventListener('click',function(){var t=this.getAttribute('data-tab');if(t==='logout'){doLogout();return;}currentTab=t;for(var j=0;j<btns.length;j++)btns[j].className='nav-btn'+(btns[j].getAttribute('data-tab')===currentTab?' on':'');renderView();});}currentTab='menu';renderView();}
+function renderView(){var v=document.getElementById('vw');if(currentTab==='menu'){v.innerHTML='<div class="hdr"><div class="logo">Бар <em>\u00b7 Холл</em></div>'+menuHdr()+'</div><div class="norezultat" id="nr">Ничего не найдено</div><div class="content" id="mc"></div>';setupMenu(true);}else if(currentTab==='admin'){showAdmin(v);}}
+function showAdmin(v){v.innerHTML='<div class="admin-page"><h2>Управление</h2><div class="admin-card"><h3>Добавить бармена</h3><label>Имя</label><input type="text" id="an"><label>Email</label><input type="email" id="ae"><label>Пароль</label><input type="text" id="ap" value="hall'+Math.floor(1000+Math.random()*9000)+'"><button class="admin-btn" id="ab" type="button">Создать аккаунт</button><div class="admin-msg" id="am"></div></div><div class="admin-card"><h3>Сотрудники</h3><div id="sl2">Загрузка...</div></div></div>';document.getElementById('ab').addEventListener('click',createBartender);loadStaffList();}
+function createBartender(){var n=document.getElementById('an').value.trim(),e=document.getElementById('ae').value.trim(),p=document.getElementById('ap').value.trim(),m=document.getElementById('am');if(!n||!e||!p){m.textContent='Заполни все поля';m.style.color='#e94560';return;}m.textContent='Создаём...';m.style.color='#888';sb.auth.signUp({email:e,password:p,options:{data:{name:n,role:'bartender'}}}).then(function(r){if(r.error){m.textContent=r.error.message;m.style.color='#e94560';return;}var uid=r.data.user.id;sb.from('profiles').insert({id:uid,name:n,role:'bartender'}).then(function(r2){if(r2.error){m.textContent='Юзер создан, профиль: '+r2.error.message;m.style.color='#f7a440';}else{m.textContent='Готово! '+e+' / '+p;m.style.color='#1D9E75';document.getElementById('an').value='';document.getElementById('ae').value='';document.getElementById('ap').value='hall'+Math.floor(1000+Math.random()*9000);loadStaffList();}});});}
+function loadStaffList(){var el=document.getElementById('sl2');sb.from('profiles').select('*').order('created_at').then(function(r){if(r.error){el.textContent='Ошибка: '+r.error.message;return;}if(!r.data||!r.data.length){el.textContent='Пока никого';return;}var h='';for(var i=0;i<r.data.length;i++){var p=r.data[i];h+='<div class="staff-item"><span>'+esc(p.name)+'</span><span class="staff-role">'+(p.role==='manager'?'Управляющий':'Бармен')+'</span></div>';}el.innerHTML=h;});}
+function doLogout(){sb.auth.signOut().then(function(){currentUser=null;currentProfile=null;showGuest();});}
+sb.auth.getSession().then(function(r){if(r.data.session){currentUser=r.data.session.user;loadProfile();}else{showGuest();}});
+if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(r){for(var i=0;i<r.length;i++)r[i].unregister();});caches.keys().then(function(n){for(var i=0;i<n.length;i++)caches.delete(n[i]);});}
 </script>
 </body>
 </html>
